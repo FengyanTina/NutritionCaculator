@@ -46,13 +46,15 @@ import { RootStackParamList } from "../App";
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   Modal,
   TouchableOpacity,
   FlatList,
+  ImageBackground,
 } from "react-native";
 import { BlurView } from "expo-blur";
-import { SafeAreaView } from "react-native-safe-area-context";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
@@ -102,10 +104,24 @@ export default function HomeScreen({ navigation }: Props) {
   return (
     
     <View style={styles.container}>
-
-       
-      <Text style={styles.text}>Select a Category</Text>
-     
+       <Text style = {styles.title}> Nutrition Caculator</Text>
+        <View style={styles.overlay}>
+         <ImageBackground 
+         style ={styles.image}   
+         source={require('../assets/nutritionImage.jpg')}
+         >
+            <BlurView intensity={8} style={styles.blurView}>
+         <Text style={styles.overlayText}>
+         Health and Fitness Calculators.
+         All the caculations are based on most widely used methods.
+         These formulas are only guidelines.
+         Consult your  dietitian for specific individual needs.
+ 
+         </Text></BlurView>
+         </ImageBackground>
+        </View>
+        <View style={styles.categoryContainer}>
+      <Text style={styles.text}>Select a Category</Text> 
       <TouchableOpacity
         onPress={() => handleCategoryChange("Body Index")}
         style={styles.button}
@@ -131,7 +147,7 @@ export default function HomeScreen({ navigation }: Props) {
         <Text style={styles.text}>Weight Manager</Text>
         </BlurView>
       </TouchableOpacity>
-
+     </View>
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableOpacity
           style={styles.modalContainer}
@@ -170,16 +186,25 @@ export default function HomeScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#bdb76b", //#dcdcdc
+    backgroundColor: "#8fbc8f", //#dcdcdc, #8fbc8f, #bdb76b
     alignItems: "center",
     justifyContent: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 60, 
+  },
+  categoryContainer:{
+    marginBottom:30,
   },
   button: {
     padding: 10,
     borderRadius: 5,
     marginTop: 5,
     width: 200, 
-    height: 100,   
+    height: 80,   
   },
   blurView: {
     flex: 1,  
@@ -220,6 +245,21 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontWeight: '700',
   },
- 
-
+  image:{
+    height:180,
+ },
+  overlay: {
+    flex: 1,
+  padding:10,
+  justifyContent: 'center',
+  },
+  overlayText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: '700',
+    justifyContent: 'center',
+    marginTop:20,
+   
+  },
 });
