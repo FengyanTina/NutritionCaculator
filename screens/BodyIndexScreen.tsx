@@ -1,6 +1,8 @@
 import { View,StyleSheet,Text } from "react-native";
-
-export default function BodyIndexScreen(){
+import { RootStackParamList } from "../App";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+type Props = NativeStackScreenProps<RootStackParamList, 'BodyIndex'>
+export default function BodyIndexScreen({navigation}:Props){
     return(
         <View style={styles.container}>
             <Text> BodyIndex</Text>
