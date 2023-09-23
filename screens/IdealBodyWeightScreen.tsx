@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { RootStackParamList } from "../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
+
 type Props = NativeStackScreenProps<RootStackParamList, "IdealBodyWeight">;
 export default function IdealBodyWeightScreen() {
   return (

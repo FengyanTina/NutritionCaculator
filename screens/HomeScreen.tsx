@@ -1,81 +1,30 @@
-// import { useState } from "react";
-// import { View,Text,StyleSheet } from "react-native";
-// import { Picker } from "@react-native-picker/picker";
-
-// export default function HomeScreen(){
-//     const [selectedItem, setSelectedItem] = useState("Profile");
-
-//     const handleItemChange = (itemValue: string) => {
-//       setSelectedItem(itemValue);
-//     };
-//     return(
-//         <View style={styles.container}>
-//             <Text> Home</Text>
-//             <Picker
-//         selectedValue={selectedItem}
-//         onValueChange={handleItemChange}
-//         style={styles.picker}
-//       >
-//         <Picker.Item label="Profile" value="Profile" />
-//         <Picker.Item label="My account" value="My account" />
-//         <Picker.Item label="Logout" value="Logout" />
-//       </Picker>
-//         </View>
-//     )
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       backgroundColor: '#dcdcdc',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//     },
-//     text:{
-//       color:'white',
-//       fontWeight: 'bold',
-//     },
-//     picker: {
-//         width: 200,
-//       },
-//   });
-
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
+import { BlurView } from "expo-blur";
+import { HomeNavigationContext } from "../components/HomeNavigationContext";
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Modal,
   TouchableOpacity,
   FlatList,
   ImageBackground,
 } from "react-native";
-import { BlurView } from "expo-blur";
-
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("Body Index");
-  const bodyIndexdata = ["Mifflin St. Jeor Calculator", "Ideal Body Weight"];
-  const macroNutrientsdata = [
-    "MacroNutrients Caculator",
-    "Water Intake Caculator",
-  ];
-  const weightManagerdata = ["Ideal Body Weight", "Calory Intake Caculator"];
-
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    toggleModal(); 
-  };
+  const {
+    isModalVisible,
+    selectedCategory,
+    bodyIndexdata,
+    macroNutrientsdata,
+    weightManagerdata,
+    toggleModal,
+    handleCategoryChange,
+  } = useContext(HomeNavigationContext);
+  const [selectedItem, setSelectedItem] = useState<string>("");
 
   const handleItemPress = (item: string) => {
     toggleModal();
@@ -102,52 +51,50 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   return (
-    
     <View style={styles.container}>
-       <Text style = {styles.title}> Nutrition Caculator</Text>
-        <View style={styles.overlay}>
-         <ImageBackground 
-         style ={styles.image}   
-         source={require('../assets/nutritionImage.jpg')}
-         >
-            <BlurView intensity={8} style={styles.blurView}>
-         <Text style={styles.overlayText}>
-         Health and Fitness Calculators.
-         All the caculations are based on most widely used methods.
-         These formulas are only guidelines.
-         Consult your  dietitian for specific individual needs.
- 
-         </Text></BlurView>
-         </ImageBackground>
-        </View>
-        <View style={styles.categoryContainer}>
-      <Text style={styles.text}>Select a Category</Text> 
-      <TouchableOpacity
-        onPress={() => handleCategoryChange("Body Index")}
-        style={styles.button}
-      > 
-       <BlurView intensity={80} tint="light"style={styles.blurView}>
-        <Text style={styles.text}>Body Index</Text> 
-        </BlurView>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => handleCategoryChange("Macro Nutrients")}
-        style={styles.button}
-      >
-         <BlurView intensity={80} tint="light" style={styles.blurView}>
+      <Text style={styles.title}> Nutrition Caculator</Text>
+      <View style={styles.overlay}>
+        <ImageBackground
+          style={styles.image}
+          source={require("../assets/nutritionImage.jpg")}
+        >
+          <BlurView intensity={8} style={styles.blurView}>
+            <Text style={styles.overlayText}>
+              Health and Fitness Calculators. All the caculations are based on
+              most widely used methods. These formulas are only guidelines.
+              Consult your dietitian for specific individual needs.
+            </Text>
+          </BlurView>
+        </ImageBackground>
+      </View>
+      <View style={styles.categoryContainer}>
+        <Text style={styles.text}>Select a Category</Text>
+        <TouchableOpacity
+          onPress={() => handleCategoryChange("Body Index")}
+          style={styles.button}
+        >
+          <BlurView intensity={80} tint="light" style={styles.blurView}>
+            <Text style={styles.text}>Body Index</Text>
+          </BlurView>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => handleCategoryChange("Macro Nutrients")}
+          style={styles.button}
+        >
+          <BlurView intensity={80} tint="light" style={styles.blurView}>
             <Text style={styles.text}>Macro Nutrients</Text>
-            </BlurView>
-        
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => handleCategoryChange("Weight Manager")}
-        style={styles.button}
-      >
-         <BlurView intensity={80} tint="light"  style={styles.blurView}>
-        <Text style={styles.text}>Weight Manager</Text>
-        </BlurView>
-      </TouchableOpacity>
-     </View>
+          </BlurView>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => handleCategoryChange("Weight Manager")}
+          style={styles.button}
+        >
+          <BlurView intensity={80} tint="light" style={styles.blurView}>
+            <Text style={styles.text}>Weight Manager</Text>
+          </BlurView>
+        </TouchableOpacity>
+      </View>
+      
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableOpacity
           style={styles.modalContainer}
@@ -192,40 +139,39 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 60, 
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 60,
   },
-  categoryContainer:{
-    marginBottom:30,
+  categoryContainer: {
+    marginBottom: 30,
   },
   button: {
     padding: 10,
     borderRadius: 5,
     marginTop: 5,
-    width: 200, 
-    height: 80,   
+    width: 200,
+    height: 80,
   },
   blurView: {
-    flex: 1,  
-    padding: 10,  
-    textAlign: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: 20, 
+    flex: 1,
+    padding: 10,
+    textAlign: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: 20,
   },
   text: {
     fontSize: 18,
-    fontWeight: '700',
-    color:'black',
-    textAlign:'center',
+    fontWeight: "700",
+    color: "black",
+    textAlign: "center",
   },
-
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-   margin:10,
+    margin: 10,
   },
   modalContent: {
     backgroundColor: "#dcdcdc",
@@ -236,30 +182,29 @@ const styles = StyleSheet.create({
   },
   modalItem: {
     fontSize: 16,
-    marginTop:20,
-    fontWeight: '500',
+    marginTop: 20,
+    fontWeight: "500",
   },
   closeButton: {
     color: "blue",
     marginTop: 16,
-    textAlign:'center',
-    fontWeight: '700',
+    textAlign: "center",
+    fontWeight: "700",
   },
-  image:{
-    height:180,
- },
+  image: {
+    height: 180,
+  },
   overlay: {
     flex: 1,
-  padding:10,
-  justifyContent: 'center',
+    padding: 10,
+    justifyContent: "center",
   },
   overlayText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    textAlign: 'center',
-    fontWeight: '700',
-    justifyContent: 'center',
-    marginTop:20,
-   
+    textAlign: "center",
+    fontWeight: "700",
+    justifyContent: "center",
+    marginTop: 20,
   },
 });

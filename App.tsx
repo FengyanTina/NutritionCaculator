@@ -7,7 +7,8 @@ import BodyIndexScreen from './screens/BodyIndexScreen';
 import MacronutrientsScreen from './screens/MacronutrientsScreen';
 import WeightManagerScreen from './screens/WeightManagerScreen';
 import IdealBodyWeightScreen from './screens/IdealBodyWeightScreen';
-import { BlurView } from 'expo-blur';
+import { HomeNavigationProvider } from './components/HomeNavigationContext';
+
 export type RootStackParamList = {
     Home: undefined;
     BodyIndex:undefined;
@@ -19,7 +20,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <SafeAreaProvider>
-        
+      <HomeNavigationProvider>
     <NavigationContainer>
         <StatusBar style='auto'/>
         <RootStack.Navigator initialRouteName='Home'>
@@ -30,6 +31,7 @@ export default function App() {
           <RootStack.Screen name = "IdealBodyWeight" component = {IdealBodyWeightScreen}/> 
         </RootStack.Navigator>  
     </NavigationContainer>
+    </HomeNavigationProvider>
     </SafeAreaProvider>
 
   );
