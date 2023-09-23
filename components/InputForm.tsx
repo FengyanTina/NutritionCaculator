@@ -14,7 +14,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import {
-  CalculationContext,
   useCalculationContext,
 } from "./CalculationContext";
 
