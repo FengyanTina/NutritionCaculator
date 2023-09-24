@@ -72,6 +72,7 @@ export default function InputForm() {
           style={{ height: 50, width: 150 }}
           onValueChange={(itemValue, itemIndex) => setSelectedGender(itemValue)}
         >
+             <Picker.Item label="Select Gender" value="" /> 
           <Picker.Item label="female" value="female" />
           <Picker.Item label="male" value="male" />
         </Picker>
@@ -86,6 +87,7 @@ export default function InputForm() {
             setSelectedActivityLevel(itemValue)
           }
         >
+            <Picker.Item label="Select Activity Level" value="" /> 
           <Picker.Item
             label="Little to no exercise"
             value="Little to no exercise"
@@ -118,6 +120,7 @@ export default function InputForm() {
             setSelectedNutritionGoal(itemValue)
           }
         >
+            <Picker.Item label="Select Nutrition Goal" value="" /> 
           <Picker.Item
             style={{ flexWrap: "wrap" }}
             label="maintain current weight"
