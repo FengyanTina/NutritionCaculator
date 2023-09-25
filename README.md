@@ -9,4 +9,6 @@ TouchableOpacity
 FlatList
 
 Picker
+
+StatusBar
 BlurView

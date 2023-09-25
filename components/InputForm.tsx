@@ -17,7 +17,10 @@ import {
   useCalculationContext,
 } from "./CalculationContext";
 
-export default function InputForm() {
+interface InputFormProps {
+    inputsToShow: string[];
+   }
+export default function InputForm({ inputsToShow }: InputFormProps) {
   const {
     age,
     setAge,
@@ -36,11 +39,13 @@ export default function InputForm() {
 
   return (
     <SafeAreaView>
+        
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
         }}
       >
+         {inputsToShow.includes('basic') &&
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -64,7 +69,9 @@ export default function InputForm() {
             keyboardType="numeric"
           />
         </View>
+  }
       </TouchableWithoutFeedback>
+      {inputsToShow.includes('selecteGender') && 
       <View style={styles.pickerContainer}>
         <Text style={styles.text}> Select Gender: </Text>
         <Picker
@@ -77,7 +84,8 @@ export default function InputForm() {
           <Picker.Item label="male" value="male" />
         </Picker>
       </View>
-
+  }
+   {inputsToShow.includes('selecteActivityLevel') &&
       <View style={styles.pickerContainer}>
         <Text style={styles.text}> Activity Level: </Text>
         <Picker
@@ -110,7 +118,8 @@ export default function InputForm() {
           />
         </Picker>
       </View>
-
+  }
+   {inputsToShow.includes('selecteNutritionGoal') &&
       <View style={styles.pickerContainer}>
         <Text style={styles.text}> Nutrition Goal: </Text>
         <Picker
@@ -144,6 +153,7 @@ export default function InputForm() {
           />
         </Picker>
       </View>
+  }
       <View>
       </View>
     </SafeAreaView>

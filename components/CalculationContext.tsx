@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { createContext, useState, useContext } from "react";
-interface ActivityLevelData{
+export interface ActivityLevelData{
     Level: string;
     Description: string;
     Factor: number;
@@ -29,8 +29,6 @@ interface CalculationContextProps {
   calculateBMI: () => void;
   bmrValue: number;
   calculateBMR: () => void;
-
-  calculateActivityCalory: () => void;
   
 }
 const initialActivityLevelData:ActivityLevelData[] = [
@@ -86,7 +84,6 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateBMI: () => {},
   bmrValue: 0,
   calculateBMR: () => {},
-  calculateActivityCalory: () => {},
   
 });
 export function useCalculationContext() {
@@ -110,11 +107,11 @@ export const CalculationProvider = ({
   );
   const [bmiValue, setBmiValue] = useState(0);
   const [bmrValue, setBmrValue] = useState(0);
-  const[activityLevelData,setActivityLevelData] = useState(initialActivityLevelData);
 
   const calculateBMI = () => {
     const heightInMeters = parseFloat(height) / 100;
     const weightInKg = parseFloat(weight);
+    console.log(height, weight)
     if (isNaN(heightInMeters) || isNaN(weightInKg)) {
       console.error("Invalid input values");
       return;
@@ -127,6 +124,7 @@ export const CalculationProvider = ({
     const heightInCm = parseFloat(height);
     const weightInKg = parseFloat(weight);
     const ageInNum = parseFloat(age);
+    console.log(height, weight, age)
     if (isNaN(heightInCm) || isNaN(weightInKg) || isNaN(ageInNum)) {
       console.error("Invalid input values");
       return;
@@ -137,6 +135,8 @@ export const CalculationProvider = ({
       }
       
     if(selectedGender === 'male'){
+        
+        
         const bmr = (10*weightInKg) + (6.25*heightInCm)-(5* ageInNum)+5;
     setBmrValue(bmr); 
     } else if (selectedGender === 'female'){
@@ -145,19 +145,16 @@ export const CalculationProvider = ({
     } 
 }
 
-const calculateActivityCalory = () => {
-    
-    const updatedActivityLevelData = activityLevelData.map((activity) => ({
+const activityLevelData = useMemo(() => {
+    console.time("a")
+    const updatedActivityLevelData = initialActivityLevelData.map((activity) => ({
         ...activity,
         Calory: bmrValue * activity.Factor,
-      }));
-    
-      // Update the context with the updated data
-      setActivityLevelData(updatedActivityLevelData);
-  };
+      })); 
+    console.timeEnd("a")
 
-
-  
+      return updatedActivityLevelData
+  }, [bmrValue]);
 
   return (
     <CalculationContext.Provider
@@ -179,7 +176,6 @@ const calculateActivityCalory = () => {
         calculateBMI,
         bmrValue,
         calculateBMR,
-        calculateActivityCalory,
       }}
     >
       {children}

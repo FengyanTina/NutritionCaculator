@@ -1,16 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useCalculationContext } from "./CalculationContext";
+import { useCalculationContext,ActivityLevelData} from "./CalculationContext";
+
 
 const DataTable = () => {
-    const { activityLevelData,selectedGender,} = useCalculationContext();
-   
+    const { activityLevelData} = useCalculationContext();
+  
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
         <Text style={styles.header}>Activity Level</Text>
         <Text style={styles.header}>Example</Text>
-        <Text style={styles.header}>Calory (TDEE)</Text>
+        <Text style={styles.header}>Calory (TDEE*)</Text>
       </View>
       {activityLevelData.map((activity) => (
         <View style={styles.tableRow} key={activity.Level}>
