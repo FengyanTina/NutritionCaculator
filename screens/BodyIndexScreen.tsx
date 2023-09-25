@@ -21,15 +21,13 @@ export default function BodyIndexScreen({ navigation }: Props) {
   
 
       const handleCalculateCalory = () => {
+        calculateBMI();
         calculateBMR()
         calculateActivityCalory(); 
         setAge("");
         setHeight("");
         setWeight("");
         setSelectedGender("");
-    
-        // Set inputSubmitted to true to show the table
-        setInputSubmitted(true);
       };
 
   return (
@@ -39,7 +37,8 @@ export default function BodyIndexScreen({ navigation }: Props) {
         <Button title="Calculate BMI" onPress={handleCalculateBMI} />
         <Text>Your BMI: {bmiValue.toFixed(3)}</Text>
         <Button title="Calculate BMR" onPress={handleCalculateCalory} />
-        <Text>Your BMI: {bmrValue.toFixed(3)}</Text>
+        <Text>Your Calory: {bmrValue.toFixed(3)}</Text>
+        <Text>Your BMI: {bmiValue.toFixed(3)}</Text>
         <DataTable/>
         </ScrollView>
     </SafeAreaView>

@@ -1,6 +1,11 @@
 import React from "react";
 import { createContext, useState, useContext } from "react";
-
+interface ActivityLevelData{
+    Level: string;
+    Description: string;
+    Factor: number;
+    Calory:number;
+};
 interface CalculationContextProps {
   activityLevelData: {
     Level: string;
@@ -28,7 +33,7 @@ interface CalculationContextProps {
   calculateActivityCalory: () => void;
   
 }
-const initialActivityLevelData = [
+const initialActivityLevelData:ActivityLevelData[] = [
   {
     Level: "Sedentary",
     Description:

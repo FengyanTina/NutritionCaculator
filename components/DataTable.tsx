@@ -3,7 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { useCalculationContext } from "./CalculationContext";
 
 const DataTable = () => {
-    const { activityLevelData} = useCalculationContext();
+    const { activityLevelData,selectedGender,} = useCalculationContext();
+   
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
