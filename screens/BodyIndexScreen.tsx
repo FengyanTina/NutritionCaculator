@@ -11,13 +11,13 @@ export default function BodyIndexScreen({ navigation }: Props) {
 
     const [inputSubmitted, setInputSubmitted] = useState(false);
     
-    const handleCalculateBMI = () => {
-        calculateBMI();
-        setAge("");
-        setHeight("");
-        setWeight("");
-        Keyboard.dismiss();
-      };
+    // const handleCalculateBMI = () => {
+    //     calculateBMI();
+    //     setAge("");
+    //     setHeight("");
+    //     setWeight("");
+    //     Keyboard.dismiss();
+    //   };
   
 
       const handleCalculateCalory = () => {
@@ -34,11 +34,11 @@ export default function BodyIndexScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
          <ScrollView style={styles.scrollView}>
         <InputForm />  
-        <Button title="Calculate BMI" onPress={handleCalculateBMI} />
-        <Text>Your BMI: {bmiValue.toFixed(3)}</Text>
-        <Button title="Calculate BMR" onPress={handleCalculateCalory} />
-        <Text>Your Calory: {bmrValue.toFixed(3)}</Text>
-        <Text>Your BMI: {bmiValue.toFixed(3)}</Text>
+        {/* <Button title="Calculate BMI" onPress={handleCalculateBMI} /> */}
+        {/* <Text>Your BMI: {bmiValue.toFixed(3)}</Text> */}
+        <Button title="Submit" onPress={handleCalculateCalory} />
+        <Text>Calory: {bmrValue.toFixed(3)}</Text>
+        <Text>BMI: {bmiValue.toFixed(3)}</Text>
         <DataTable/>
         </ScrollView>
     </SafeAreaView>
