@@ -31,8 +31,8 @@ export default function HomeScreen({ navigation }: Props) {
     if (selectedCategory === "Body Index") {
       if (item === "Mifflin St. Jeor Calculator") {
         navigation.navigate("BodyIndex");
-      } else if (item === "Ideal Body Weight") {
-        navigation.navigate("IdealBodyWeight");
+      } else if (item === "Calculate BMI") {
+        navigation.navigate("CalculateBMI");
       }
     } else if (selectedCategory === "Macro Nutrients") {
       if (item === "MacroNutrients Caculator") {

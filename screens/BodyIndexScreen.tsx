@@ -29,7 +29,6 @@ export default function BodyIndexScreen({ navigation }: Props) {
     setUser(data);
   };
 
-
   useEffect(()=>{
     if (user) {
       calculateBMI(user);
@@ -52,15 +51,13 @@ export default function BodyIndexScreen({ navigation }: Props) {
           inputsToShow={["basic", "selecteGender"]}
           onUserInput={onSubmit}
         />
-        <View style={styles.submitButton}>
-        </View>
-        <Text style={styles.text}>Your BMR: {bmrValue.toFixed(3)} *</Text>
-        <Text style={styles.text}>Your BMI: {bmiValue.toFixed(3)} *</Text>
-        <DataTable />
+        <View >
+        </View> 
+      
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* BMR:</Text>
-          BMR is your body’s calorie needs at rest with no extra activity.
-        </Text>
+        <Text style={styles.boldText}>Your BMI:</Text>{bmiValue.toFixed(3)}</Text>
+        <DataTable />
+   
         <Text style={styles.text}>
           <Text style={styles.boldText}>* TDEE:</Text>
           Your BMR is still only your energy needs at rest. To determine how
@@ -86,11 +83,7 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 20,
   },
-  submitButton: {
-    margin: 10,
-    width: 100,
-    alignContent: "center",
-  },
+
   text: {
     margin: 10,
     lineHeight: 20,

@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-const bodyIndexdata = ["Mifflin St. Jeor Calculator", "Ideal Body Weight"];
+const bodyIndexdata = ["Mifflin St. Jeor Calculator", "Calculate BMI"];
 const macroNutrientsdata = ["MacroNutrients Caculator", "Water Intake Caculator"];
 const weightManagerdata = ["Ideal Body Weight", "Calory Intake Caculator"];
 export const HomeNavigationContext = createContext({
@@ -8,6 +8,7 @@ export const HomeNavigationContext = createContext({
   bodyIndexdata,
   macroNutrientsdata,
   weightManagerdata,
+ 
   toggleModal: () => {},
   handleCategoryChange: (category: string) => {},
 });

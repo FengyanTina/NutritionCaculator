@@ -72,7 +72,7 @@ export default function InputForm({
                 </>
               )}
             />
-            <Button onPress={sendForm} title="Send" />
+            
             <Controller
               name="weight"
               control={control}
@@ -223,7 +223,11 @@ export default function InputForm({
           </Picker>
         </View>
       )}
-      <View></View>
+      <View>
+        <View style={styles.submitButton}>
+      <Button  onPress={sendForm} title="Send" />
+      </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -243,6 +247,11 @@ const styles = StyleSheet.create({
   },
   pickerItem: {
     flexWrap: "wrap",
+  },
+  submitButton: {
+    margin: 10,
+    width: '100%',
+    alignContent: "center",
   },
   input: {
     height: 40,

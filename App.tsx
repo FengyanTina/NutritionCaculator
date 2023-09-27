@@ -9,6 +9,7 @@ import WeightManagerScreen from './screens/WeightManagerScreen';
 import IdealBodyWeightScreen from './screens/IdealBodyWeightScreen';
 import { HomeNavigationProvider } from './components/HomeNavigationContext';
 import { CalculationContext, CalculationProvider } from './components/CalculationContext';
+import CalculateBMIScreen from './screens/CalculateBMIScreen';
 
 export type RootStackParamList = {
     Home: undefined;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
     Macronutrients:undefined;
     WeightManager:undefined;
     IdealBodyWeight:undefined;
+    CalculateBMI:undefined;
 }
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
@@ -31,6 +33,7 @@ export default function App() {
           <RootStack.Screen name = "Macronutrients" component = {MacronutrientsScreen}/>
           <RootStack.Screen name = "WeightManager" component = {WeightManagerScreen}/> 
           <RootStack.Screen name = "IdealBodyWeight" component = {IdealBodyWeightScreen}/> 
+          <RootStack.Screen name = "CalculateBMI" component = {CalculateBMIScreen}/> 
         </RootStack.Navigator>  
     </NavigationContainer>
     </HomeNavigationProvider>
