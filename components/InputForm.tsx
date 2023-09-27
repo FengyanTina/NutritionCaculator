@@ -11,10 +11,10 @@ import {
 } from "react-native";
 import { RootStackParamList } from "../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { useCalculationContext } from "./CalculationContext";
-import { User } from "../models/UserInfor";
+import { User, defaultUser } from "../models/UserInfor";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 interface InputFormProps {
@@ -36,23 +36,14 @@ export default function InputForm({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({
+    defaultValues: defaultUser(),
+  });
 
-  const onSubmit = (data: User) => {
-    // Call the callback function to handle user input
+  const sendForm = handleSubmit((data) => {
+    console.log("sendForm", data);
     onUserInput(data);
-  };
-  // const {
-  //     register,
-  //     formState: { errors },
-  //     handleSubmit,
-  //   } = useForm<User>();
-  //   const onSubmit: SubmitHandler<User> = data => console.log(data);
-
-  //   const [age, setAge] = useState("");
-  //   const [height, setHeight] = useState("");
-  //   const [weight, setWeight] = useState("");
-  //   const [selectedGender, setSelectedGender] = useState("");
+  });
 
   return (
     <SafeAreaView>
@@ -66,13 +57,14 @@ export default function InputForm({
             <Controller
               name="age"
               control={control}
-              defaultValue=""
               rules={{ required: "Age is required." }}
-              render={({ field }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <>
                   <TextInput
                     style={styles.input}
-                    {...field}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
                     placeholder="Enter Your Age"
                     keyboardType="numeric"
                   />
@@ -80,69 +72,44 @@ export default function InputForm({
                 </>
               )}
             />
-
+            <Button onPress={sendForm} title="Send" />
             <Controller
               name="weight"
               control={control}
-              defaultValue=""
               rules={{ required: "weight is required." }}
-              render={({ field }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <>
                   <TextInput
                     style={styles.input}
-                    {...field}
-                    placeholder="Enter Your Age"
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Enter Your Weight"
                     keyboardType="numeric"
                   />
-                  <Text style={styles.errorText}>{errors.age?.message}</Text>
+                  <Text style={styles.errorText}>{errors.weight?.message}</Text>
                 </>
               )}
             />
             <Controller
               name="height"
               control={control}
-              defaultValue=""
               rules={{ required: "height is required." }}
-              render={({ field }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <>
                   <TextInput
                     style={styles.input}
-                    {...field}
-                    placeholder="Enter Your Age"
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Enter Your Height"
                     keyboardType="numeric"
                   />
-                  <Text style={styles.errorText}>{errors.age?.message}</Text>
+                  <Text style={styles.errorText}>{errors.height?.message}</Text>
                 </>
               )}
             />
 
-            {/* <TextInput
-            style={styles.input}
-            value={age}
-            error={!!errors.age}
-    
-            helperText={errors.age?.message}
-            margin="normal"
-            {...register("age", { required: "Title is required." })}
-            onChangeText={(val) => setAge(val)}
-            placeholder="Enter Your Age"
-            keyboardType="numeric"
-         /> */}
-
-            {/* <TextInput
-              style={styles.input}
-              value={height}
-              onChangeText={(val) => setHeight(val)}
-              placeholder="Enter Your Height in (cm)"
-              keyboardType="numeric"
-            />
-            <TextInput
-              style={styles.input}
-              value={weight}
-              onChangeText={(val) => setWeight(val)}
-              placeholder="Enter Your Weight in (Kg)"
-              keyboardType="numeric"
-            /> */}
           </View>
         )}
       </TouchableWithoutFeedback>
@@ -153,12 +120,13 @@ export default function InputForm({
             control={control}
             defaultValue=""
             rules={{ required: "Please select a gender." }} // Add a required rule
-            render={({ field }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <>
                 <Text style={styles.text}> Select Gender: </Text>
                 <Picker
-                  selectedValue={field.value}
-                  onValueChange={(itemValue) => field.onChange(itemValue)}
+                  style={{ height: 50, width: 150 }}
+                  selectedValue={value}
+                  onValueChange={(itemValue) => onChange(itemValue)}
                 >
                   <Picker.Item label="Select Gender" value="" />
                   <Picker.Item label="Female" value="female" />
