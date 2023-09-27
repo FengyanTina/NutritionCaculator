@@ -17,6 +17,7 @@ import {
   import { CalculationContext } from "../components/CalculationContext";
   import DataTable from "../components/DataTable";
   import { User } from "../models/UserInfor";
+import BMICategoryTable from "../components/BMICategoryTable";
   
   type Props = NativeStackScreenProps<RootStackParamList, "CalculateBMI">;
   export default function CalculateBMI({ navigation }: Props) {
@@ -48,16 +49,16 @@ import {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <InputForm
-            inputsToShow={["basic", "selecteGender"]}
+            inputsToShow={["basic"]}
             onUserInput={onSubmit}
           />
           <View >
           </View> 
         
           <Text style={styles.text}>
-          <Text style={styles.boldText}>Your BMI *:</Text>{bmrValue.toFixed(3)}
+          <Text style={styles.boldText}>Your BMI *:</Text>{bmiValue.toFixed(3)}
           </Text>
-        
+        <BMICategoryTable/>
           <Text style={styles.text}>
             <Text style={styles.boldText}>* BMI:</Text>
             Body mass index, or BMI, is one of the most widely used metrics to measure health status. It is quick and easy to calculate to estimate one’s weight status based on their height.

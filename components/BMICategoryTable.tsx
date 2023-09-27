@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useCalculationContext} from "./CalculationContext";
+import { User } from "../models/UserInfor";
+import { initialBmiData,BMICategory } from "../models/BMI";
 
 
-const DataTable = () => {
-    const { activityLevelData} = useCalculationContext();
+const BMICategoryTable = () => {
+    const [bmiCategory,setBmiCategory] = useState(initialBmiData)
+    
+    const calculateWeightRange = (data: User, initialBmiData: BMICategory[]) => {
+        const heightInCm = parseFloat(data.height);
+        const weightInKg = parseFloat(data.weight);
+    
+        // Calculate the low and high values for weight range
+        const updatedBMIData = initialBmiData.map((bmi) => ({
+          ...bmi,
+          WeightRangeHigh: heightInCm * bmi.BMIHighValue,
+          WeightRangeLow: weightInKg * bmi.BMILowValue,
+        }));
+    
+        setBmiCategory(updatedBMIData) ;
+      };
   
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
-        <Text style={styles.header}>Activity Level</Text>
-        <Text style={styles.header}>Example</Text>
-        <Text style={styles.header}>Calory (TDEE*)</Text>
+        <Text style={styles.header}>BMI Classification</Text>
+        <Text style={styles.header}>Weight Range</Text>
+        
       </View>
-      {activityLevelData.map((activity) => (
-        <View style={styles.tableRow} key={activity.Level}>
-          <Text style={styles.cell}>{activity.Level}</Text>
-          <Text style={styles.cell}>{activity.Description}</Text>
-          <Text style={styles.cell}>{activity.Calory}</Text>
+      {bmiCategory.map((category) => (
+        
+        <View style={styles.tableRow} key={category.BMIClassification}>
+                <Text style={styles.cell}>{category.BMIClassification}</Text>
+          <Text style={styles.cell}>{category.WeightRangeLow}-{category.WeightRangeHight}</Text>
+       
         </View>
       ))}
     </View>
@@ -46,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DataTable;
+export default BMICategoryTable;

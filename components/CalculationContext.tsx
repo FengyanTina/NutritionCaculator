@@ -9,8 +9,8 @@ import { BMICategory, initialBmiData } from "../models/BMI";
 
 interface CalculationContextProps {
   activityLevelData: ActivityLevelData[];
-  
-  calculateWeightRange: (user: User, data: BMICategory[]) => {};
+//   bmiCategory:BMICategory[];
+//   calculateWeightRange: (user: User, data: BMICategory[]) => {};
   selectedActivityLevel: string;
   setSelectedActivityLevel: (activityLevel: string) => void;
   selectedNutritionGoal: string;
@@ -22,6 +22,7 @@ interface CalculationContextProps {
 }
 export const CalculationContext = createContext<CalculationContextProps>({
   activityLevelData: initialActivityLevelData,
+//   bmiCategory:initialBmiData,
   selectedActivityLevel: "",
   setSelectedActivityLevel: (activityLevel: string) => {},
   selectedNutritionGoal: "",
@@ -30,7 +31,7 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateBMI: (user: User) => {},
   bmrValue: 0,
   calculateBMR: (user: User) => {},
-  calculateWeightRange: (user: User, data: BMICategory[]) => [],
+//   calculateWeightRange: (user: User, data: BMICategory[]) => [],
 });
 export function useCalculationContext() {
   return useContext(CalculationContext);
@@ -93,19 +94,21 @@ export const CalculationProvider = ({
     return updatedActivityLevelData;
   }, [bmrValue]);
 
-  const calculateWeightRange = (data: User, initialBmiData: BMICategory[]) => {
-    const heightInCm = parseFloat(data.height);
-    const weightInKg = parseFloat(data.weight);
+  
 
-    // Calculate the low and high values for weight range
-    const updatedBMIData = initialBmiData.map((bmi) => ({
-      ...bmi,
-      WeightRangeHigh: heightInCm * bmi.BMIHighValue,
-      WeightRangeLow: weightInKg * bmi.BMILowValue,
-    }));
+//   const calculateWeightRange = (data: User, initialBmiData: BMICategory[]) => {
+//     const heightInCm = parseFloat(data.height);
+//     const weightInKg = parseFloat(data.weight);
 
-    return updatedBMIData;
-  };
+//     // Calculate the low and high values for weight range
+//     const updatedBMIData = initialBmiData.map((bmi) => ({
+//       ...bmi,
+//       WeightRangeHigh: heightInCm * bmi.BMIHighValue,
+//       WeightRangeLow: weightInKg * bmi.BMILowValue,
+//     }));
+
+//     return updatedBMIData;
+//   };
 
 
 
@@ -114,8 +117,8 @@ export const CalculationProvider = ({
     <CalculationContext.Provider
       value={{
         activityLevelData,
-       
-        calculateWeightRange,
+        // bmiCategory,
+        // calculateWeightRange,
         selectedActivityLevel,
         setSelectedActivityLevel,
         selectedNutritionGoal,
