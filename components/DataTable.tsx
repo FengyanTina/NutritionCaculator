@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useCalculationContext} from "./CalculationContext";
-
+import { useCalculationContext } from "./CalculationContext";
 
 const DataTable = () => {
-    const { activityLevelData} = useCalculationContext();
-  
+  const { activityLevelData } = useCalculationContext();
+
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
@@ -17,7 +16,7 @@ const DataTable = () => {
         <View style={styles.tableRow} key={activity.Level}>
           <Text style={styles.cell}>{activity.Level}</Text>
           <Text style={styles.cell}>{activity.Description}</Text>
-          <Text style={styles.cell}>{activity.Calory}</Text>
+          <Text style={styles.cell}>{activity.Calory.toFixed(0)}</Text>
         </View>
       ))}
     </View>

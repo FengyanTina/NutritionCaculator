@@ -94,7 +94,7 @@ export default function HomeScreen({ navigation }: Props) {
           </BlurView>
         </TouchableOpacity>
       </View>
-      
+
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableOpacity
           style={styles.modalContainer}

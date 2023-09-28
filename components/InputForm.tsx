@@ -5,18 +5,14 @@ import {
   SafeAreaView,
   TextInput,
   Button,
-  Alert,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { RootStackParamList } from "../App";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useContext, useEffect, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { useCalculationContext } from "./CalculationContext";
 import { User, defaultUser } from "../models/UserInfor";
 
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller,  useForm } from "react-hook-form";
 interface InputFormProps {
   inputsToShow: string[];
   onUserInput: (data: User) => void;

@@ -3,10 +3,6 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  TextInput,
-  Button,
-  Alert,
-  Keyboard,
   StatusBar,
   ScrollView,
 } from "react-native";
@@ -25,24 +21,20 @@ export default function CaloryIndexScreen({ navigation }: Props) {
   const [user, setUser] = useState<User | null>(null);
 
   const onSubmit = (data: User) => {
-
     setUser(data);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (user) {
       calculateBMI(user);
       calculateBMR(user);
     } else {
       console.log("user is null!");
     }
-  },[user])
-  useEffect(()=>{
-    console.log("bmiValue",bmiValue);
-  },[bmiValue])
-
-  
-
+  }, [user]);
+  useEffect(() => {
+    console.log("bmiValue", bmiValue);
+  }, [bmiValue]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,13 +43,20 @@ export default function CaloryIndexScreen({ navigation }: Props) {
           inputsToShow={["basic", "selecteGender"]}
           onUserInput={onSubmit}
         />
-        <View >
-        </View> 
-      
-        <Text style={styles.text}>
-        <Text style={styles.boldText}>Your BMI:</Text>{bmiValue.toFixed(3)}</Text>
+        <View></View>
+        <View style={styles.bmiContainer}>
+          <Text style={styles.text}>
+            <Text style={styles.boldText}>Your BMR *:</Text>{" "}
+          </Text>
+          <View style={styles.bmiValueBox}>
+            <Text style={styles.bmiValue}>
+              {bmrValue.toFixed(0)} calories/day
+            </Text>
+          </View>
+        </View>
+
         <DataTable />
-   
+
         <Text style={styles.text}>
           <Text style={styles.boldText}>* TDEE:</Text>
           Your BMR is still only your energy needs at rest. To determine how
@@ -83,12 +82,23 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 20,
   },
-
   text: {
     margin: 10,
     lineHeight: 20,
   },
   boldText: {
+    fontWeight: "bold",
+  },
+  bmiContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  bmiValueBox: {
+    backgroundColor: "#e0e0e0",
+    padding: 5,
+    borderRadius: 5,
+  },
+  bmiValue: {
     fontWeight: "bold",
   },
 });

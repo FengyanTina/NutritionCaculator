@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { createContext, useState, useContext } from "react";
 import {
   ActivityLevelData,
@@ -9,8 +9,7 @@ import { BMICategory, initialBmiData } from "../models/BMI";
 
 interface CalculationContextProps {
   activityLevelData: ActivityLevelData[];
-//   bmiCategory:BMICategory[];
-   calculateWeightRange: (user: User) => BMICategory[];
+  calculateWeightRange: (user: User) => BMICategory[];
   selectedActivityLevel: string;
   setSelectedActivityLevel: (activityLevel: string) => void;
   selectedNutritionGoal: string;
@@ -22,7 +21,6 @@ interface CalculationContextProps {
 }
 export const CalculationContext = createContext<CalculationContextProps>({
   activityLevelData: initialActivityLevelData,
-//   bmiCategory:initialBmiData,
   selectedActivityLevel: "",
   setSelectedActivityLevel: (activityLevel: string) => {},
   selectedNutritionGoal: "",
@@ -31,7 +29,7 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateBMI: (user: User) => {},
   bmrValue: 0,
   calculateBMR: (user: User) => {},
-calculateWeightRange: (user: User) => [],
+  calculateWeightRange: (user: User) => [],
 });
 export function useCalculationContext() {
   return useContext(CalculationContext);
@@ -73,7 +71,6 @@ export const CalculationProvider = ({
       console.error("Please select your gender before calculating BMR.");
       return;
     }
-
     if (data.selectedGender === "male") {
       const bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInNum + 5;
       setBmrValue(bmr);
@@ -90,31 +87,25 @@ export const CalculationProvider = ({
         Calory: bmrValue * activity.Factor,
       })
     );
-
     return updatedActivityLevelData;
   }, [bmrValue]);
 
-  
-
-  const calculateWeightRange = (data: User):BMICategory[] => {
+  const calculateWeightRange = (data: User): BMICategory[] => {
     const heightInCm = parseFloat(data.height);
-
     const updatedBMIData = initialBmiData.map((bmi) => ({
       ...bmi,
-      WeightRangeHighValue: heightInCm/100 *heightInCm/100 * bmi.BMIHighRate,
-      WeightRangeLowValue: heightInCm/100 *heightInCm/100  * bmi.BMILowRate,
+      WeightRangeHighValue:
+        (((heightInCm / 100) * heightInCm) / 100) * bmi.BMIHighRate,
+      WeightRangeLowValue:
+        (((heightInCm / 100) * heightInCm) / 100) * bmi.BMILowRate,
     }));
     return updatedBMIData;
   };
-
-
-
 
   return (
     <CalculationContext.Provider
       value={{
         activityLevelData,
-        // bmiCategory,
         calculateWeightRange,
         selectedActivityLevel,
         setSelectedActivityLevel,
