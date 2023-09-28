@@ -82,7 +82,7 @@ export default function InputForm({
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
-                    placeholder="Enter Your Weight"
+                    placeholder="Enter Your Weight (kg)"
                     keyboardType="numeric"
                   />
                   <Text style={styles.errorText}>{errors.weight?.message}</Text>
@@ -100,7 +100,7 @@ export default function InputForm({
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
-                    placeholder="Enter Your Height"
+                    placeholder="Enter Your Height (cm)"
                     keyboardType="numeric"
                   />
                   <Text style={styles.errorText}>{errors.height?.message}</Text>

@@ -18,9 +18,9 @@ export default function HomeScreen({ navigation }: Props) {
   const {
     isModalVisible,
     selectedCategory,
-    bodyIndexdata,
-    macroNutrientsdata,
-    weightManagerdata,
+    bodyIndexSelection: bodyIndexCategory,
+    macroNutrientsSelection: macroNutrientsCategory,
+    weightManagerSelection: weightManagerCategory,
     toggleModal,
     handleCategoryChange,
   } = useContext(HomeNavigationContext);
@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }: Props) {
     toggleModal();
     if (selectedCategory === "Body Index") {
       if (item === "Mifflin St. Jeor Calculator") {
-        navigation.navigate("BodyIndex");
+        navigation.navigate("MifflinCaculator");
       } else if (item === "Calculate BMI") {
         navigation.navigate("CalculateBMI");
       }
@@ -43,7 +43,7 @@ export default function HomeScreen({ navigation }: Props) {
     } else if (selectedCategory === "Weight Manager") {
       if (item === "Ideal Body Weight") {
         navigation.navigate("IdealBodyWeight");
-      } else if (item === "Calory Intake Caculator") {
+      } else if (item === "Weight Management") {
         navigation.navigate("WeightManager");
       }
     }
@@ -106,11 +106,11 @@ export default function HomeScreen({ navigation }: Props) {
             <FlatList
               data={
                 selectedCategory === "Body Index"
-                  ? bodyIndexdata
+                  ? bodyIndexCategory
                   : selectedCategory === "Macro Nutrients"
-                  ? macroNutrientsdata
+                  ? macroNutrientsCategory
                   : selectedCategory === "Weight Manager"
-                  ? weightManagerdata
+                  ? weightManagerCategory
                   : []
               }
               renderItem={({ item }) => (

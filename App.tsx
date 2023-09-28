@@ -10,6 +10,7 @@ import IdealBodyWeightScreen from './screens/IdealBodyWeightScreen';
 import { HomeNavigationProvider } from './components/HomeNavigationContext';
 import { CalculationContext, CalculationProvider } from './components/CalculationContext';
 import CalculateBMIScreen from './screens/CalculateBMIScreen';
+import MifflinCaculatorScreen from './screens/MifflinCaculator';
 
 export type RootStackParamList = {
     Home: undefined;
@@ -18,6 +19,7 @@ export type RootStackParamList = {
     WeightManager:undefined;
     IdealBodyWeight:undefined;
     CalculateBMI:undefined;
+    MifflinCaculator:undefined;
 }
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
@@ -33,6 +35,7 @@ export default function App() {
           <RootStack.Screen name = "Macronutrients" component = {MacronutrientsScreen}/>
           <RootStack.Screen name = "WeightManager" component = {WeightManagerScreen}/> 
           <RootStack.Screen name = "IdealBodyWeight" component = {IdealBodyWeightScreen}/> 
+          <RootStack.Screen name = "MifflinCaculator" component = {MifflinCaculatorScreen}/> 
           <RootStack.Screen name = "CalculateBMI" component = {CalculateBMIScreen}/> 
         </RootStack.Navigator>  
     </NavigationContainer>

@@ -1,14 +1,18 @@
 # NutritionCaculator
 
-Components
+React Components:
 View
 Text
 TextInput
-Screen
+Screen?
 TouchableOpacity
 FlatList
+Model
+ScrollView
+Hook Form
+SafeAreaView?
+Picker?
 
-Picker
-
+Expo:
 StatusBar
 BlurView

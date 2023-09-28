@@ -1,16 +1,16 @@
 import { createContext, useState, useContext } from "react";
-const bodyIndexdata = ["Mifflin St. Jeor Calculator", "Calculate BMI"];
-const macroNutrientsdata = [
+const bodyIndexCategory = ["Mifflin St. Jeor Calculator", "Calculate BMI"];
+const macroNutrientsCategory = [
   "MacroNutrients Caculator",
   "Water Intake Caculator",
 ];
-const weightManagerdata = ["Ideal Body Weight", "Calory Intake Caculator"];
+const weightManagerCategory = ["Ideal Body Weight", "Weight Management"];
 export const HomeNavigationContext = createContext({
   isModalVisible: false,
   selectedCategory: "Body Index",
-  bodyIndexdata,
-  macroNutrientsdata,
-  weightManagerdata,
+  bodyIndexSelection: bodyIndexCategory,
+  macroNutrientsSelection: macroNutrientsCategory,
+  weightManagerSelection: weightManagerCategory,
 
   toggleModal: () => {},
   handleCategoryChange: (category: string) => {},
@@ -40,9 +40,9 @@ export const HomeNavigationProvider = (
       value={{
         isModalVisible,
         selectedCategory,
-        bodyIndexdata,
-        macroNutrientsdata,
-        weightManagerdata,
+        bodyIndexSelection: bodyIndexCategory,
+        macroNutrientsSelection: macroNutrientsCategory,
+        weightManagerSelection: weightManagerCategory,
         toggleModal,
         handleCategoryChange,
       }}
