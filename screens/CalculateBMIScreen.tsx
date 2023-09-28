@@ -15,7 +15,6 @@ import {
   import React, { useContext, useEffect, useState } from "react";
   import InputForm from "../components/InputForm";
   import { CalculationContext } from "../components/CalculationContext";
-  import DataTable from "../components/DataTable";
   import { User } from "../models/UserInfor";
 import BMICategoryTable from "../components/BMICategoryTable";
 import { BMICategory, initialBmiData } from "../models/BMI";
@@ -56,9 +55,15 @@ import { BMICategory, initialBmiData } from "../models/BMI";
           <View >
           </View> 
         
-          <Text style={styles.text}>
-          <Text style={styles.boldText}>Your BMI *:</Text>{bmiValue.toFixed(3)}
-          </Text>
+          <View style={styles.bmiContainer}>
+  <Text style={styles.text}>
+    <Text style={styles.boldText}>Your BMI *:</Text>{" "}
+  </Text>
+  <View style={styles.bmiValueBox}>
+    <Text style={styles.bmiValue}>{bmiValue.toFixed(3)}</Text>
+  </View>
+</View>
+
         <BMICategoryTable weightRangeData={weightRangeData}/>
           <Text style={styles.text}>
             <Text style={styles.boldText}>* BMI:</Text>
@@ -85,5 +90,17 @@ import { BMICategory, initialBmiData } from "../models/BMI";
     boldText: {
       fontWeight: "bold",
     },
+    bmiContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+      },
+      bmiValueBox: {
+        backgroundColor: "#e0e0e0",
+        padding: 5,
+        borderRadius: 5,
+      },
+      bmiValue: {
+        fontWeight: "bold",
+      },
   });
   

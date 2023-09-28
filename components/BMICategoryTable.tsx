@@ -22,7 +22,6 @@ const BMICategoryTable = ({ weightRangeData }: { weightRangeData: BMICategory[] 
       {(category.BMIClassification === 'Healthy Weight(18.5 – 24.9)' || category.BMIClassification === 'overweight (25.0 - 29.9)') && `${category.WeightRangeLowValue.toFixed(1)} - ${category.WeightRangeHighValue.toFixed(1)}`}
       {(category.BMIClassification === 'class I obesity (30.0 - 34.9)' || category.BMIClassification === 'class II obesity (35.0 - 39.9)') && `${category.WeightRangeLowValue.toFixed(1)} - <${category.WeightRangeHighValue.toFixed(1)}`}
       {category.BMIClassification === 'class III obesity (≥ 40.0)' && `>${category.WeightRangeLowValue.toFixed(1)}`}
-            {/* {category.WeightRangeLowValue === 0 ? '0' : category.WeightRangeLowValue.toFixed(1)} - {category.WeightRangeHighValue === 0 ? '' : category.WeightRangeHighValue.toFixed(1)} */}
             </Text>
        
         </View>

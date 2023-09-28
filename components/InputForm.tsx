@@ -36,13 +36,15 @@ export default function InputForm({
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<User>({
     defaultValues: defaultUser(),
   });
 
   const sendForm = handleSubmit((data) => {
-    console.log("sendForm", data);
+    // console.log("sendForm", data);
     onUserInput(data);
+    reset();
   });
 
   return (

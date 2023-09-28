@@ -104,7 +104,6 @@ export const CalculationProvider = ({
       WeightRangeHighValue: heightInCm/100 *heightInCm/100 * bmi.BMIHighRate,
       WeightRangeLowValue: heightInCm/100 *heightInCm/100  * bmi.BMILowRate,
     }));
-console.log(updatedBMIData);
     return updatedBMIData;
   };
 
