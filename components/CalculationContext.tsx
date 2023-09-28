@@ -47,35 +47,35 @@ export const CalculationProvider = ({
 
   const calculateBMI = (data: User) => {
     console.log("calculateBMI", data);
-    const heightInMeters = parseFloat(data.height) / 100;
-    const weightInKg = parseFloat(data.weight);
+    // const heightInMeters = parseFloat(data.height) / 100;
+    // const weightInKg = parseFloat(data.weight);
     console.log(data.height, data.weight);
-    if (isNaN(heightInMeters) || isNaN(weightInKg)) {
-      console.error("Invalid input values");
-      return;
-    }
-    const bmi = weightInKg / (heightInMeters * heightInMeters);
+    // if (isNaN(heightInMeters) || isNaN(weightInKg)) {
+    //   console.error("Invalid input values");
+    //   return;
+    // }
+    const bmi = data.weight / (data.height * data.height);
     setBmiValue(bmi);
   };
 
   const calculateBMR = (data: User) => {
     console.log("calculateBMR", data);
-    const heightInCm = parseFloat(data.height);
-    const weightInKg = parseFloat(data.weight);
-    const ageInNum = parseFloat(data.age);
-    if (isNaN(heightInCm) || isNaN(weightInKg) || isNaN(ageInNum)) {
-      console.error("Invalid input values");
-      return;
-    }
+    // const heightInCm = parseFloat(data.height);
+    // const weightInKg = parseFloat(data.weight);
+    // const ageInNum = parseFloat(data.age);
+    // if (isNaN(heightInCm) || isNaN(weightInKg) || isNaN(ageInNum)) {
+    //   console.error("Invalid input values");
+    //   return;
+    // }
     if (data.selectedGender === "") {
       console.error("Please select your gender before calculating BMR.");
       return;
     }
     if (data.selectedGender === "male") {
-      const bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInNum + 5;
+      const bmr = 10 * data.weight + 6.25 * data.height - 5 * data.age + 5;
       setBmrValue(bmr);
     } else if (data.selectedGender === "female") {
-      const bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInNum - 161;
+      const bmr = 10 * data.weight + 6.25 * data.height - 5 * data.age - 161;
       setBmrValue(bmr);
     }
   };
@@ -91,13 +91,13 @@ export const CalculationProvider = ({
   }, [bmrValue]);
 
   const calculateWeightRange = (data: User): BMICategory[] => {
-    const heightInCm = parseFloat(data.height);
+    // const heightInCm = parseFloat(data.height);
     const updatedBMIData = initialBmiData.map((bmi) => ({
       ...bmi,
       WeightRangeHighValue:
-        (((heightInCm / 100) * heightInCm) / 100) * bmi.BMIHighRate,
+        (((data.height / 100) * data.height) / 100) * bmi.BMIHighRate,
       WeightRangeLowValue:
-        (((heightInCm / 100) * heightInCm) / 100) * bmi.BMILowRate,
+        (((data.height/ 100) * data.height) / 100) * bmi.BMILowRate,
     }));
     return updatedBMIData;
   };

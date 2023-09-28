@@ -1,16 +1,16 @@
 export interface User {
-    age: string;
-    height: string;
-    weight: string;
+    age: number;
+    height: number;
+    weight: number;
    selectedGender: string;
   }
 
   
   export function defaultUser(): User {
     return {
-      age: "",
-      height: "",
-      weight: "",
+      age: 0,
+      height: 0,
+      weight:0,
       selectedGender: "",
     };
   }
