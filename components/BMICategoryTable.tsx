@@ -4,23 +4,8 @@ import { User } from "../models/UserInfor";
 import { initialBmiData,BMICategory } from "../models/BMI";
 
 
-const BMICategoryTable = () => {
-    const [bmiCategory,setBmiCategory] = useState(initialBmiData)
-    
-    const calculateWeightRange = (data: User, initialBmiData: BMICategory[]) => {
-        const heightInCm = parseFloat(data.height);
-        const weightInKg = parseFloat(data.weight);
-    
-        // Calculate the low and high values for weight range
-        const updatedBMIData = initialBmiData.map((bmi) => ({
-          ...bmi,
-          WeightRangeHigh: heightInCm * bmi.BMIHighValue,
-          WeightRangeLow: weightInKg * bmi.BMILowValue,
-        }));
-    
-        setBmiCategory(updatedBMIData) ;
-      };
-  
+const BMICategoryTable = ({ weightRangeData }: { weightRangeData: BMICategory[] }) => {
+ 
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
@@ -28,11 +13,17 @@ const BMICategoryTable = () => {
         <Text style={styles.header}>Weight Range</Text>
         
       </View>
-      {bmiCategory.map((category) => (
+      {weightRangeData.map((category) => (
         
         <View style={styles.tableRow} key={category.BMIClassification}>
-                <Text style={styles.cell}>{category.BMIClassification}</Text>
-          <Text style={styles.cell}>{category.WeightRangeLow}-{category.WeightRangeHight}</Text>
+        <Text style={styles.cell}>{category.BMIClassification}</Text>
+          <Text style={styles.cell}>
+          {category.BMIClassification === 'Underweight(<18.5)' && `<${category.WeightRangeHighValue.toFixed(1)}`}
+      {(category.BMIClassification === 'Healthy Weight(18.5 – 24.9)' || category.BMIClassification === 'overweight (25.0 - 29.9)') && `${category.WeightRangeLowValue.toFixed(1)} - ${category.WeightRangeHighValue.toFixed(1)}`}
+      {(category.BMIClassification === 'class I obesity (30.0 - 34.9)' || category.BMIClassification === 'class II obesity (35.0 - 39.9)') && `${category.WeightRangeLowValue.toFixed(1)} - <${category.WeightRangeHighValue.toFixed(1)}`}
+      {category.BMIClassification === 'class III obesity (≥ 40.0)' && `>${category.WeightRangeLowValue.toFixed(1)}`}
+            {/* {category.WeightRangeLowValue === 0 ? '0' : category.WeightRangeLowValue.toFixed(1)} - {category.WeightRangeHighValue === 0 ? '' : category.WeightRangeHighValue.toFixed(1)} */}
+            </Text>
        
         </View>
       ))}

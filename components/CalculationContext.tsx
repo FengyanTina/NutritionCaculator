@@ -10,7 +10,7 @@ import { BMICategory, initialBmiData } from "../models/BMI";
 interface CalculationContextProps {
   activityLevelData: ActivityLevelData[];
 //   bmiCategory:BMICategory[];
-//   calculateWeightRange: (user: User, data: BMICategory[]) => {};
+   calculateWeightRange: (user: User) => BMICategory[];
   selectedActivityLevel: string;
   setSelectedActivityLevel: (activityLevel: string) => void;
   selectedNutritionGoal: string;
@@ -31,7 +31,7 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateBMI: (user: User) => {},
   bmrValue: 0,
   calculateBMR: (user: User) => {},
-//   calculateWeightRange: (user: User, data: BMICategory[]) => [],
+calculateWeightRange: (user: User) => [],
 });
 export function useCalculationContext() {
   return useContext(CalculationContext);
@@ -96,19 +96,17 @@ export const CalculationProvider = ({
 
   
 
-//   const calculateWeightRange = (data: User, initialBmiData: BMICategory[]) => {
-//     const heightInCm = parseFloat(data.height);
-//     const weightInKg = parseFloat(data.weight);
+  const calculateWeightRange = (data: User):BMICategory[] => {
+    const heightInCm = parseFloat(data.height);
 
-//     // Calculate the low and high values for weight range
-//     const updatedBMIData = initialBmiData.map((bmi) => ({
-//       ...bmi,
-//       WeightRangeHigh: heightInCm * bmi.BMIHighValue,
-//       WeightRangeLow: weightInKg * bmi.BMILowValue,
-//     }));
-
-//     return updatedBMIData;
-//   };
+    const updatedBMIData = initialBmiData.map((bmi) => ({
+      ...bmi,
+      WeightRangeHighValue: heightInCm/100 *heightInCm/100 * bmi.BMIHighRate,
+      WeightRangeLowValue: heightInCm/100 *heightInCm/100  * bmi.BMILowRate,
+    }));
+console.log(updatedBMIData);
+    return updatedBMIData;
+  };
 
 
 
@@ -118,7 +116,7 @@ export const CalculationProvider = ({
       value={{
         activityLevelData,
         // bmiCategory,
-        // calculateWeightRange,
+        calculateWeightRange,
         selectedActivityLevel,
         setSelectedActivityLevel,
         selectedNutritionGoal,

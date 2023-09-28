@@ -18,12 +18,14 @@ import {
   import DataTable from "../components/DataTable";
   import { User } from "../models/UserInfor";
 import BMICategoryTable from "../components/BMICategoryTable";
+import { BMICategory, initialBmiData } from "../models/BMI";
   
   type Props = NativeStackScreenProps<RootStackParamList, "CalculateBMI">;
   export default function CalculateBMI({ navigation }: Props) {
-    const { bmiValue, bmrValue, calculateBMI, calculateBMR } =
+    const { bmiValue,calculateWeightRange, calculateBMI, } =
       useContext(CalculationContext);
     const [user, setUser] = useState<User | null>(null);
+    const [weightRangeData, setWeightRangeData] = useState<BMICategory[]>(initialBmiData);
   
     const onSubmit = (data: User) => {
   
@@ -33,14 +35,13 @@ import BMICategoryTable from "../components/BMICategoryTable";
     useEffect(()=>{
       if (user) {
         calculateBMI(user);
-        calculateBMR(user);
+        const weightRange = calculateWeightRange(user);
+        setWeightRangeData(weightRange); 
       } else {
         console.log("user is null!");
       }
     },[user])
-    useEffect(()=>{
-      console.log("bmiValue",bmiValue);
-    },[bmiValue])
+  
   
     
   
@@ -58,7 +59,7 @@ import BMICategoryTable from "../components/BMICategoryTable";
           <Text style={styles.text}>
           <Text style={styles.boldText}>Your BMI *:</Text>{bmiValue.toFixed(3)}
           </Text>
-        <BMICategoryTable/>
+        <BMICategoryTable weightRangeData={weightRangeData}/>
           <Text style={styles.text}>
             <Text style={styles.boldText}>* BMI:</Text>
             Body mass index, or BMI, is one of the most widely used metrics to measure health status. It is quick and easy to calculate to estimate one’s weight status based on their height.

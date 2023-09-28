@@ -72,7 +72,7 @@ export default function InputForm({
                 </>
               )}
             />
-            
+
             <Controller
               name="weight"
               control={control}
@@ -109,7 +109,6 @@ export default function InputForm({
                 </>
               )}
             />
-
           </View>
         )}
       </TouchableWithoutFeedback>
@@ -139,19 +138,6 @@ export default function InputForm({
               </>
             )}
           />
-
-          {/* <Text style={styles.text}> Select Gender: </Text>
-          <Picker
-            selectedValue={selectedGender}
-            style={{ height: 50, width: 150 }}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedGender(itemValue)
-            }
-          >
-            <Picker.Item label="Select Gender" value="" />
-            <Picker.Item label="female" value="female" />
-            <Picker.Item label="male" value="male" />
-          </Picker> */}
         </View>
       )}
       {inputsToShow.includes("selecteActivityLevel") && (
@@ -225,8 +211,8 @@ export default function InputForm({
       )}
       <View>
         <View style={styles.submitButton}>
-      <Button  onPress={sendForm} title="Send" />
-      </View>
+          <Button onPress={sendForm} title="Send" />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -250,7 +236,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     margin: 10,
-    width: '100%',
+    width: "100%",
     alignContent: "center",
   },
   input: {
