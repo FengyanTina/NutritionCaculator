@@ -16,7 +16,7 @@ import {
   
   type Props = NativeStackScreenProps<RootStackParamList, "MifflinCaculator">;
   export default function MifflinCaculatorScreen({ navigation }: Props) {
-    const { bmiValue, bmrValue, calculateBMI, calculateBMR } =
+    const {  bmrValue,  calculateBMR } =
       useContext(CalculationContext);
     const [user, setUser] = useState<User | null>(null);
   
