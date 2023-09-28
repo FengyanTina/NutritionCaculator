@@ -47,14 +47,14 @@ export const CalculationProvider = ({
 
   const calculateBMI = (data: User) => {
     console.log("calculateBMI", data);
-    // const heightInMeters = parseFloat(data.height) / 100;
+     const heightInMeters = data.height / 100;
     // const weightInKg = parseFloat(data.weight);
     console.log(data.height, data.weight);
     // if (isNaN(heightInMeters) || isNaN(weightInKg)) {
     //   console.error("Invalid input values");
     //   return;
     // }
-    const bmi = data.weight / (data.height * data.height);
+    const bmi = data.weight / (heightInMeters * heightInMeters);
     setBmiValue(bmi);
   };
 
@@ -95,9 +95,9 @@ export const CalculationProvider = ({
     const updatedBMIData = initialBmiData.map((bmi) => ({
       ...bmi,
       WeightRangeHighValue:
-        (((data.height / 100) * data.height) / 100) * bmi.BMIHighRate,
+        (data.height / 100) * (data.height / 100) * bmi.BMIHighRate,
       WeightRangeLowValue:
-        (((data.height/ 100) * data.height) / 100) * bmi.BMILowRate,
+      (data.height / 100) * (data.height / 100)  * bmi.BMILowRate,
     }));
     return updatedBMIData;
   };

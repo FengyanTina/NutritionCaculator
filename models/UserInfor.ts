@@ -2,7 +2,7 @@ export interface User {
     age: number;
     height: number;
     weight: number;
-   selectedGender: string;
+   selectedGender?: string;
   }
 
   

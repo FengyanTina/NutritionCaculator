@@ -20,10 +20,10 @@ import {
       .number({
           required_error: 'Du måste ange en giltigt vikt',
           invalid_type_error: 'Du måste ange ett riktigt num',
-        })
+        }).min(0, { message: 'Vikten måste filled in.' })
       .positive({ message: 'Vikten måste vara positivt.' }) // Check for positive value
       
-        .min(0, { message: 'Vikten måste vara positivt.' }), // Check for non-negative value
+        , // Check for non-negative value
       height: z.coerce
         .number({
           required_error: 'Du måste ange en giltigt vikt',
@@ -32,16 +32,16 @@ import {
         .positive({ message: 'Höjden måste vara positivt.' }) // Check for positive value
         .min(0, { message: 'Höjden måste vara positivt.' }), // Check for non-negative value
       age: z.coerce
-        .number()
+        .number({
+            required_error: 'Du måste ange en giltigt vikt',
+            invalid_type_error: 'Du måste ange ett riktigt num',
+          })
         .positive({ message: 'Åldern måste vara positivt.' }) // Check for positive value
-        .int({ message: 'Åldern måste vara ett heltal.' })
-        .refine((value) => {
-          // Check both conditions: not empty and non-negative
-          return value !== undefined && value !== null && value >= 0;
-        }, { message: 'Du måste ange ålder och det måste vara positivt.' }), // Check for empty field and non-negative value
-      selectedGender: z.union([z.literal('female'), z.literal('male')]), // Check for integer value
+        .int({ message: 'Åldern måste vara ett heltal.' }),
+      selectedGender: z.union([z.literal('female'), z.literal('male')]).optional(), // Check for integer value
       
     });
+
     
   
   
@@ -73,13 +73,14 @@ import {
       defaultValues: defaultUser(),
     });
     const handleInputChange = (field: keyof User, text: string | number) => {
-        // Update the form value using setValue
         setValue(field, text);
       };
     const sendForm = handleSubmit((data) => {
-      // console.log("sendForm", data);
+       console.log("sendForm", data);
+       console.log("Before reset:", getValues('weight')); 
       onUserInput(data);
       reset();
+      console.log("After reset:", getValues('weight'));
     });
   
     return (
@@ -95,6 +96,7 @@ import {
               
                 <TextInput
                   {...register('age')}
+    
                   style={styles.input}
                   placeholder="Enter Your Age"
                   keyboardType="numeric"
@@ -106,6 +108,7 @@ import {
              
                 <TextInput
                   {...register('weight')}
+                
                   style={styles.input}
                   placeholder="Enter Your Weight (kg)"
                   keyboardType="numeric"

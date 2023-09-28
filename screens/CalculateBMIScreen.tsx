@@ -40,7 +40,7 @@ export default function CalculateBMI({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <InputForm inputsToShow={["basic"]} onUserInput={onSubmit} />
+        <InputForm inputsToShow={["basic", "selecteGender"]} onUserInput={onSubmit} />
         <View></View>
         <View style={styles.bmiContainer}>
           <Text style={styles.text}>
