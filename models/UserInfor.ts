@@ -1,16 +1,16 @@
 export interface User {
-    age: number;
-    height: number;
-    weight: number;
+    age: number|undefined;
+    height: number|undefined;
+    weight: number|undefined;
    selectedGender?: string;
   }
 
   
   export function defaultUser(): User {
     return {
-      age: 0,
-      height: 0,
-      weight:0,
+      age: undefined,
+      height: undefined,
+      weight:undefined,
       selectedGender: "",
     };
   }

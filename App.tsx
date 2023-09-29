@@ -8,7 +8,7 @@ import MacronutrientsScreen from './screens/MacronutrientsScreen';
 import WeightManagerScreen from './screens/WeightManagerScreen';
 import IdealBodyWeightScreen from './screens/IdealBodyWeightScreen';
 import { HomeNavigationProvider } from './components/HomeNavigationContext';
-import { CalculationContext, CalculationProvider } from './components/CalculationContext';
+import { CalculationProvider } from './components/CalculationContext';
 import CalculateBMIScreen from './screens/CalculateBMIScreen';
 import MifflinCaculatorScreen from './screens/MifflinCaculator';
 
