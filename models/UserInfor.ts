@@ -2,7 +2,7 @@ export interface User {
     age: number|undefined;
     height: number|undefined;
     weight: number|undefined;
-   selectedGender?: string;
+   selectedGender?: string|undefined;
   }
 
   
@@ -11,6 +11,6 @@ export interface User {
       age: undefined,
       height: undefined,
       weight:undefined,
-      selectedGender: "",
+      selectedGender: undefined,
     };
   }

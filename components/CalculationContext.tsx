@@ -47,15 +47,16 @@ export const CalculationProvider = ({
 
   const calculateBMI = (data: User) => {
     console.log("calculateBMI", data);
-     const heightInMeters = data.height / 100;
+    if(data.height&&data.weight){
+        const heightInMeters = data.height / 100;
+     
     // const weightInKg = parseFloat(data.weight);
-    console.log(data.height, data.weight);
     // if (isNaN(heightInMeters) || isNaN(weightInKg)) {
     //   console.error("Invalid input values");
     //   return;
     // }
     const bmi = data.weight / (heightInMeters * heightInMeters);
-    setBmiValue(bmi);
+    setBmiValue(bmi);}
   };
 
   const calculateBMR = (data: User) => {
@@ -71,10 +72,10 @@ export const CalculationProvider = ({
       console.error("Please select your gender before calculating BMR.");
       return;
     }
-    if (data.selectedGender === "male") {
+    if (data.selectedGender === "male" && data.weight && data.height&&data.age) {
       const bmr = 10 * data.weight + 6.25 * data.height - 5 * data.age + 5;
       setBmrValue(bmr);
-    } else if (data.selectedGender === "female") {
+    } else if (data.selectedGender === "female"&& data.weight && data.height&&data.age) {
       const bmr = 10 * data.weight + 6.25 * data.height - 5 * data.age - 161;
       setBmrValue(bmr);
     }
@@ -92,14 +93,19 @@ export const CalculationProvider = ({
 
   const calculateWeightRange = (data: User): BMICategory[] => {
     // const heightInCm = parseFloat(data.height);
-    const updatedBMIData = initialBmiData.map((bmi) => ({
-      ...bmi,
-      WeightRangeHighValue:
-        (data.height / 100) * (data.height / 100) * bmi.BMIHighRate,
-      WeightRangeLowValue:
-      (data.height / 100) * (data.height / 100)  * bmi.BMILowRate,
-    }));
-    return updatedBMIData;
+   
+    if (data.height !== undefined) {
+        const heightInMeters = data.height / 100;
+     
+        const updatedBMIData = initialBmiData.map((bmi) => ({
+          ...bmi,
+          WeightRangeHighValue: heightInMeters * heightInMeters * bmi.BMIHighRate,
+          WeightRangeLowValue: heightInMeters * heightInMeters * bmi.BMILowRate,
+        }));
+        return updatedBMIData;
+      } else {
+        return [];
+      }
   };
 
   return (

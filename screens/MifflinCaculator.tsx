@@ -26,15 +26,12 @@ import {
   
     useEffect(() => {
       if (user) {
-        // calculateBMI(user);
         calculateBMR(user);
       } else {
         console.log("user is null!");
       }
     }, [user]);
-    // useEffect(() => {
-    //   console.log("bmiValue", bmiValue);
-    // }, [bmiValue]);
+
   
     return (
       <SafeAreaView style={styles.container}>

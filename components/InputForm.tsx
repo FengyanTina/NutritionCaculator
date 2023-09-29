@@ -14,7 +14,7 @@ import { User, defaultUser } from "../models/UserInfor";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import React from "react";
 
 const UserSchema: z.ZodType<User> = z.object({
   age: z.coerce
@@ -61,14 +61,11 @@ export default function InputForm({
     control,
     handleSubmit,
     formState: { errors },
-    setValue,
-    getValues,
     reset,
     clearErrors,
   } = useForm<User>({
-     resolver: zodResolver(UserSchema),
-    defaultValues: defaultUser(   
-    ),
+    resolver: zodResolver(UserSchema),
+    defaultValues: defaultUser(),
   });
   const sendForm = handleSubmit((data) => {
     onUserInput(data);
@@ -86,13 +83,13 @@ export default function InputForm({
         {inputsToShow.includes("basic") && (
           <View style={styles.inputContainer}>
             <Controller
-              control={control}    
-              render={({ field:{  onBlur, value ,onChange} }) => (
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
                 <TextInput
                   style={styles.input}
                   onBlur={onBlur}
                   placeholder="Enter Your Age"
-                value={value?.toString()}
+                  value={value?.toString()}
                   onChangeText={onChange}
                   keyboardType="numeric"
                 />
@@ -101,13 +98,13 @@ export default function InputForm({
             />
             <Text style={styles.errorText}>{errors.age?.message}</Text>
             <Controller
-              control={control}    
-              render={({ field:{  onBlur, value ,onChange} }) => (
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
                 <TextInput
                   style={styles.input}
                   onBlur={onBlur}
                   placeholder="Enter Your Height (cm)"
-                value={value?.toString()}
+                  value={value?.toString()}
                   onChangeText={onChange}
                   keyboardType="numeric"
                 />
@@ -116,13 +113,13 @@ export default function InputForm({
             />
             <Text style={styles.errorText}>{errors.height?.message}</Text>
             <Controller
-              control={control}    
-              render={({ field:{  onBlur, value ,onChange} }) => (
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
                 <TextInput
                   style={styles.input}
                   onBlur={onBlur}
                   placeholder="Enter Your Weight (kg)"
-                value={value?.toString()}
+                  value={value?.toString()}
                   onChangeText={onChange}
                   keyboardType="numeric"
                 />
@@ -139,8 +136,8 @@ export default function InputForm({
             name="selectedGender"
             control={control}
             defaultValue=""
-            rules={{ required: "Please select a gender." }} 
-            render={({ field: { onChange,  value } }) => (
+            rules={{ required: "Please select a gender." }}
+            render={({ field: { onChange, value } }) => (
               <>
                 <Text style={styles.text}> Select Gender: </Text>
                 <Picker
