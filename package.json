@@ -25,7 +25,8 @@
     "react-native-screens": "~3.22.0",
     "react-native-table-component": "^1.2.2",
     "zod": "^3.22.2",
-    "expo-checkbox": "~2.4.0"
+    "expo-checkbox": "~2.4.0",
+    "@shopify/flash-list": "1.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
