@@ -148,7 +148,6 @@ export default function InputForm({
                   <Picker.Item label="Select Gender" value="" />
                   <Picker.Item label="Female" value="female" />
                   <Picker.Item label="Male" value="male" />
-                  <Picker.Item label="Other" value="other" />
                 </Picker>
                 <Text style={styles.errorText}>
                   {errors.selectedGender?.message}

@@ -4,15 +4,15 @@ React Components:
 View
 Text
 TextInput
-Screen?
+Screen
 TouchableOpacity
 FlatList
 Model
 ScrollView
 Hook Form
-SafeAreaView?
-Picker?
+SafeAreaView
 
 Expo:
 StatusBar
 BlurView
+Picker

@@ -35,7 +35,7 @@ export default function HomeScreen({ navigation }: Props) {
         navigation.navigate("CalculateBMI");
       }
     } else if (selectedCategory === "Macro Nutrients") {
-      if (item === "MacroNutrients Caculator") {
+      if (item === "Food Nutrition Caculator") {
         navigation.navigate("Macronutrients");
       } else if (item === "Water Intake Caculator") {
         navigation.navigate("IdealBodyWeight");
@@ -43,8 +43,8 @@ export default function HomeScreen({ navigation }: Props) {
     } else if (selectedCategory === "Weight Manager") {
       if (item === "Ideal Body Weight") {
         navigation.navigate("IdealBodyWeight");
-      } else if (item === "Weight Management") {
-        navigation.navigate("WeightManager");
+      } else if (item === "Activity Calory Caculator") {
+        navigation.navigate("ActivityCalory");
       }
     }
     setSelectedItem(item);
@@ -54,6 +54,7 @@ export default function HomeScreen({ navigation }: Props) {
     <View style={styles.container}>
       <Text style={styles.title}> Nutrition Caculator</Text>
       <View style={styles.overlay}>
+        
         <ImageBackground
           style={styles.image}
           source={require("../assets/nutritionImage.jpg")}
