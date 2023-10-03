@@ -45,9 +45,9 @@ export default function IdealBodyWeightScreen() {
             <Text style={styles.ibwValue}>
               Ideal Weight using Different Formula
             </Text>
-            <View style={styles.flashListView}>
+            <View style={styles.flashList}>
               <FlashList
-                style={styles.flashList}
+                
                 data={updatedIBWData}
                 renderItem={({ item }) => (
                   <View style={styles.listItemContainer}>
