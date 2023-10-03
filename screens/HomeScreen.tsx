@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }: Props) {
       } else if (item === "Calculate BMI") {
         navigation.navigate("CalculateBMI");
       }
-    } else if (selectedCategory === "Macro Nutrients") {
+    } else if (selectedCategory === "Food Nutrition") {
       if (item === "Food Nutrition Caculator") {
         navigation.navigate("Macronutrients");
       } else if (item === "Water Intake Caculator") {
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Nutrition Caculator</Text>
+      <Text style={styles.title}> Body & Nutrition Caculator</Text>
       <View style={styles.overlay}>
         
         <ImageBackground
@@ -79,11 +79,11 @@ export default function HomeScreen({ navigation }: Props) {
           </BlurView>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => handleCategoryChange("Macro Nutrients")}
+          onPress={() => handleCategoryChange("Food Nutrition")}
           style={styles.button}
         >
           <BlurView intensity={80} tint="light" style={styles.blurView}>
-            <Text style={styles.text}>Macro Nutrients</Text>
+            <Text style={styles.text}>Food Nutrition</Text>
           </BlurView>
         </TouchableOpacity>
         <TouchableOpacity
@@ -108,7 +108,7 @@ export default function HomeScreen({ navigation }: Props) {
               data={
                 selectedCategory === "Body Index"
                   ? bodyIndexCategory
-                  : selectedCategory === "Macro Nutrients"
+                  : selectedCategory === "Food Nutrition"
                   ? macroNutrientsCategory
                   : selectedCategory === "Weight Manager"
                   ? weightManagerCategory
