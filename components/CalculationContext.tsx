@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { createContext, useState, useContext } from "react";
+
 import {
   ActivityLevelData,
   initialActivityLevelData,
@@ -31,7 +32,7 @@ interface CalculationContextProps {
 //   calculateHamwiIBW: (user: User) => void;
 //   calculateMillerIBW: (user: User) => void;
   activityCalValue: number;
-  calculateCactivityCalory: (
+  calculateActivityCalory: (
     data: User,
     activityTime: number,
     activity: ActivityMETFactor
@@ -51,7 +52,7 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateWeightRange: (user: User) => [],
   updatedIBWData:initialIBWData,
   activityCalValue: 0,
-  calculateCactivityCalory: (
+  calculateActivityCalory: (
     data: User,
     activityTime: number,
     activity: ActivityMETFactor
@@ -73,6 +74,7 @@ export const CalculationProvider = ({
   const [bmrValue, setBmrValue] = useState(0);
   const [updatedIBWData, setUpdatedIBWData] = useState<IBWFormula[]>(initialIBWData);
   const [activityCalValue, setactivityCalValue] = useState(0);
+  
 
   const calculateBMI = (data: User) => {
     if (data.height && data.weight) {
@@ -147,8 +149,6 @@ export const CalculationProvider = ({
     activityTime: number,
     activity: ActivityMETFactor
   ) => {
-    console.log("Calory", data);
-
     if (data.weight && activityTime) {
       const cal = (activityTime * activity.METFactor * 3.5 * data.weight) / 200;
       setactivityCalValue(cal);
@@ -170,7 +170,7 @@ export const CalculationProvider = ({
         updatedIBWData,
         calculateIBW,
         activityCalValue,
-        calculateCactivityCalory,
+        calculateActivityCalory: calculateCactivityCalory,
       }}
     >
       {children}

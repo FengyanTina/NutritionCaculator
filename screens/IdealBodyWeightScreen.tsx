@@ -9,7 +9,6 @@ import {
 import { RootStackParamList } from "../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import InputForm from "../components/InputForm";
-import DataTable from "../components/DataTable";
 import React, { useContext, useEffect, useState } from "react";
 import { User } from "../models/UserInfor";
 import { CalculationContext } from "../components/CalculationContext";
@@ -45,7 +44,7 @@ export default function IdealBodyWeightScreen() {
             <Text style={styles.ibwValue}>
               Ideal Weight using Different Formula
             </Text>
-            <View style={{ flex: 1 }}>
+            
             <View style={styles.flashList}>
               <FlashList
                 
@@ -56,9 +55,9 @@ export default function IdealBodyWeightScreen() {
                     <Text>{item.Value.toFixed(0)}kg</Text>
                   </View>
                 )}
-                estimatedItemSize={37}
+                estimatedItemSize={5}
               />
-            </View></View>
+            </View>
           </View>
         </View>
 
@@ -115,11 +114,10 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     marginBottom: 10,
     shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 2,
-    felx:1,
+    
   },
   listItemContainer: {
     flexDirection: "row", // Display items in a row
@@ -127,6 +125,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between", // Add space between Value and Formula
     marginBottom: 5,
     padding: 5,
+    flex:1,
+
   },
   
 });

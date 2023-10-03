@@ -30,22 +30,30 @@ const UserSchema: z.ZodType<User> = z.object({
       invalid_type_error: "Du måste ange ett riktigt num",
     })
     .min(0, { message: "Vikten måste vara positivt." })
-    .positive({ message: "Vikten måste vara positivt." }),
+    .positive({ message: "Vikten måste vara positivt." }).optional(),
   height: z.coerce
     .number({
       required_error: "Du måste ange en giltigt vikt",
       invalid_type_error: "Du måste ange ett riktigt num",
     })
     .positive({ message: "Höjden måste vara positivt." })
-    .min(0, { message: "Höjden måste vara positivt." }),
+    .min(0, { message: "Höjden måste vara positivt." }).optional(),
 
   selectedGender: z.union([z.literal("female"), z.literal("male")]).optional(),
+  activityTime: z.coerce
+  .number({
+    required_error: "Du måste ange en giltigt vikt",
+    invalid_type_error: "Du måste ange ett riktigt num",
+  })
+  .positive({ message: "Höjden måste vara positivt." })
+  .min(0, { message: "Höjden måste vara positivt." }).optional(),
 });
 
 interface InputFormProps {
   inputsToShow: string[];
   onUserInput: (data: User) => void;
 }
+
 export default function InputForm({
   inputsToShow,
   onUserInput,
@@ -187,41 +195,6 @@ export default function InputForm({
             <Picker.Item
               label="Hard daily exercise and physical job or two times a day training"
               value="Hard daily exercise and physical job,or two times a day training"
-            />
-          </Picker>
-        </View>
-      )}
-      {inputsToShow.includes("selecteNutritionGoal") && (
-        <View style={styles.pickerContainer}>
-          <Text style={styles.text}> Nutrition Goal: </Text>
-          <Picker
-            selectedValue={selectedNutritionGoal}
-            style={{ height: 50, width: 150, alignSelf: "stretch" }}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedNutritionGoal(itemValue)
-            }
-          >
-            <Picker.Item label="Select Nutrition Goal" value="" />
-            <Picker.Item
-              style={{ flexWrap: "wrap" }}
-              label="maintain current weight"
-              value="maintain current weight"
-            />
-            <Picker.Item
-              label="mild weight loss, goal: ½ lb (¼ kg) per week"
-              value="mild weight loss, goal: ½ lb (¼ kg) per week"
-            />
-            <Picker.Item
-              label="moderate weight loss, goal: 1 lb (½ kg) per week"
-              value="moderate weight loss, goal: 1 lb (½ kg) per week"
-            />
-            <Picker.Item
-              label="heavy weight loss, goal: 2 lb (1 kg) per week"
-              value="heavy weight loss, goal: 2 lb (1 kg) per week"
-            />
-            <Picker.Item
-              label="build muscle or gain weight"
-              value="build muscle or gain weight"
             />
           </Picker>
         </View>
