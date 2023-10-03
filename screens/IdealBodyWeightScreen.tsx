@@ -45,6 +45,7 @@ export default function IdealBodyWeightScreen() {
             <Text style={styles.ibwValue}>
               Ideal Weight using Different Formula
             </Text>
+            <View style={{ flex: 1 }}>
             <View style={styles.flashList}>
               <FlashList
                 
@@ -55,9 +56,9 @@ export default function IdealBodyWeightScreen() {
                     <Text>{item.Value.toFixed(0)}kg</Text>
                   </View>
                 )}
-                estimatedItemSize={200}
+                estimatedItemSize={37}
               />
-            </View>
+            </View></View>
           </View>
         </View>
 
@@ -114,10 +115,11 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     marginBottom: 10,
     shadowColor: "black",
-    shadowOffset: { width: 100, height: 2 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 2,
+    felx:1,
   },
   listItemContainer: {
     flexDirection: "row", // Display items in a row
@@ -126,7 +128,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     padding: 5,
   },
-  flashListView:{
   
-  },
 });
