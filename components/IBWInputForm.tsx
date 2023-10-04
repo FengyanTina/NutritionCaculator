@@ -94,7 +94,7 @@ export default function IBWInputForm() {
 
   return (
     <SafeAreaView >
-      <View>   
+         
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
@@ -125,9 +125,9 @@ export default function IBWInputForm() {
       <View style={styles.submitButton}>
         <View >
           <Button onPress={handleCalculate} title="Calculate" />
-        </View></View>
-      <View style={styles.listTitleContainer}><Text style={styles.listTitle}>Ideal Weight using Different Formula</Text></View>
-      
+        </View>
+      </View>
+      <Text style={styles.ibwValue}>Ideal Weight using Different Formula</Text>
       <View style={styles.flashList}>
         <FlatList
           data={updatedIBWData}
@@ -150,9 +150,23 @@ export default function IBWInputForm() {
           <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
           These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
         </Text>
-       
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
+          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
+          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
+          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+        </Text>
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
+          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+        </Text>
       </ScrollView>
-      </View>
     </SafeAreaView>
   );
 }
@@ -160,22 +174,14 @@ export default function IBWInputForm() {
 const styles = StyleSheet.create({
   inputContainer: {
     alignItems: "center",
-    marginTop:20,
   },
   scrollView: {
-    marginHorizontal: 20,
-  },
-  listTitleContainer:{
-    alignItems:"center",
-    justifyContent:"center",
-    marginBottom:10,
-    marginTop:10,
+    marginHorizontal: 40,
   },
   submitButton: {
- marginTop:10,
- marginBottom:15,
-    width: "85%",
-    marginLeft:25,
+    margin: 10,
+    width: "100%",
+alignItems:"center"
   },
   input: {
     height: 40,
@@ -190,13 +196,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "gray",
-    
+    marginBottom: 10,
     shadowColor: "black",
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 2,
-    margin:15,
-
   },
   listItemContainer: {
     flexDirection: "row", // Display items in a row
@@ -205,10 +209,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     padding: 5,
     flex: 1,
-    
 
   },
-  listTitle: {
+  ibwValue: {
     fontWeight: "bold",
     marginBottom: 10,
     fontSize: 15,

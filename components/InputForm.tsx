@@ -19,37 +19,35 @@ import React from "react";
 const UserSchema: z.ZodType<User> = z.object({
   age: z.coerce
     .number({
-      required_error: "Du måste ange en giltigt vikt",
-      invalid_type_error: "Du måste ange ett riktigt num",
+      required_error: "You must enter a number",
+      invalid_type_error: "You must enter a number",
     })
-    .positive({ message: "Åldern måste vara positivt." })
-    .int({ message: "Åldern måste vara ett heltal." }).optional(),
+    .positive({ message: "The number must be positive." })
+    .int({ message: "Age must be a whole number." }),
   weight: z.coerce
     .number({
-      required_error: "Du måste ange en giltigt vikt",
-      invalid_type_error: "Du måste ange ett riktigt num",
+      required_error: "You must enter a valid weight",
+      invalid_type_error: "You must enter a number",
     })
-    .min(0, { message: "Vikten måste vara positivt." })
-    .positive({ message: "Vikten måste vara positivt." })
-    .optional(),
+    .min(0, { message: "Weight must be positive." })
+    .positive({ message: "Weight must be positive." }),
   height: z.coerce
     .number({
-      required_error: "Du måste ange en giltigt vikt",
-      invalid_type_error: "Du måste ange ett riktigt num",
+      required_error: "Enter a valid height",
+      invalid_type_error: "Height must be a number",
     })
-    .positive({ message: "Höjden måste vara positivt." })
-    .min(0, { message: "Höjden måste vara positivt." })
-    .optional(),
+    .positive({ message: "Height must be positive." })
+    .min(0, { message: "Height must be positive." }),
 
   selectedGender: z.union([z.literal("female"), z.literal("male")]).optional(),
-  activityTime: z.coerce
-    .number({
-      required_error: "Du måste ange en giltigt vikt",
-      invalid_type_error: "Du måste ange ett riktigt num",
-    })
-    .positive({ message: "Höjden måste vara positivt." })
-    .min(0, { message: "Höjden måste vara positivt." })
-    .optional(),
+//   activityTime: z.coerce
+//     .number({
+//       required_error: "Du måste ange en giltigt vikt",
+//       invalid_type_error: "Du måste ange ett riktigt num",
+//     })
+//     .positive({ message: "Höjden måste vara positivt." })
+//     .min(0, { message: "Höjden måste vara positivt." })
+//     .optional(),
 });
 
 interface InputFormProps {
@@ -84,37 +82,9 @@ export default function InputForm({
           Keyboard.dismiss();
         }}
       >
-        {inputsToShow.includes("age") && (
+        {inputsToShow.includes("basic") && (
           <View style={styles.inputContainer}>
-             <Controller
-                control={control}
-                render={({ field: { onBlur, value, onChange } }) => (
-                  <>
-                    <TextInput
-                      style={styles.input}
-                      onBlur={onBlur}
-                      placeholder="Enter Your Age"
-                      value={value?.toString()}
-                      onChangeText={onChange}
-                      keyboardType="numeric"
-                    />
-                    <Text style={styles.errorText}>
-                      {errors.age?.message}
-                    </Text>
-                  </>
-                )}
-                name="age"
-                rules={{
-                  required: "Please enter your age.",
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: "Age must be a number.",
-                  },
-                }}
-              />
-            </View>
-          )}
-            {/* <Controller
+            <Controller
               control={control}
               render={({ field: { onBlur, value, onChange } }) => (
                 <TextInput
@@ -128,9 +98,39 @@ export default function InputForm({
               )}
               name="age"
             />
-            <Text style={styles.errorText}>{errors.age?.message}</Text> */}
-          {/* </View> */}
-        {/* )} */}
+            <Text style={styles.errorText}>{errors.age?.message}</Text>
+            <Controller
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
+                <TextInput
+                  style={styles.input}
+                  onBlur={onBlur}
+                  placeholder="Enter Your Height (cm)"
+                  value={value?.toString()}
+                  onChangeText={onChange}
+                  keyboardType="numeric"
+                />
+              )}
+              name="height"
+            />
+            <Text style={styles.errorText}>{errors.height?.message}</Text>
+            <Controller
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
+                <TextInput
+                  style={styles.input}
+                  onBlur={onBlur}
+                  placeholder="Enter Your Weight (kg)"
+                  value={value?.toString()}
+                  onChangeText={onChange}
+                  keyboardType="numeric"
+                />
+              )}
+              name="weight"
+            />
+            <Text style={styles.errorText}>{errors.weight?.message}</Text>
+          </View>
+        )}
       </TouchableWithoutFeedback>
       {inputsToShow.includes("selecteGender") && (
         <View style={styles.pickerContainer}>
@@ -159,7 +159,7 @@ export default function InputForm({
           />
         </View>
       )}
-      {inputsToShow.includes("height") && (
+      {/* {inputsToShow.includes("height") && (
           <View style={styles.inputContainer}>
            
             <Controller
@@ -179,8 +179,8 @@ export default function InputForm({
             <Text style={styles.errorText}>{errors.height?.message}</Text>
             
           </View>
-        )}
-        {inputsToShow.includes("weight") && (
+        )} */}
+        {/* {inputsToShow.includes("weight") && (
           <View style={styles.inputContainer}>
             <Controller
               control={control}
@@ -198,7 +198,7 @@ export default function InputForm({
             />
             <Text style={styles.errorText}>{errors.weight?.message}</Text>
           </View>
-        )}
+        )} */}
       {/* {inputsToShow.includes("selecteActivityLevel") && (
         <View style={styles.pickerContainer}>
           <Text style={styles.text}> Activity Level: </Text>

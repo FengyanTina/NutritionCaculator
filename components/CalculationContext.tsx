@@ -29,8 +29,8 @@ interface CalculationContextProps {
   bmiValue: number;
   calculateBMI: (user: User) => void;
 
-  updatedIBWData: IBWFormula[];
-  calculateIBW: (data: User, initialIBWData: IBWFormula[]) => void;
+//   updatedIBWData: IBWFormula[];
+//   calculateIBW: (data: User, initialIBWData: IBWFormula[]) => void;
 
   activityCalValue: number;
   calculateActivityCalory: (
@@ -46,14 +46,14 @@ export const CalculationContext = createContext<CalculationContextProps>({
   bmrValue: 0,
   calculateBMR: (user: User) => {},
   calculateWeightRange: (user: User) => [],
-  updatedIBWData: initialIBWData,
+//   updatedIBWData: initialIBWData,
   activityCalValue: 0,
   calculateActivityCalory: (
     data: User,
     activityTime: number,
     activity: ActivityMETFactor
   ) => {},
-  calculateIBW: (data: User, formular: IBWFormula[]) => {},
+//   calculateIBW: (data: User, formular: IBWFormula[]) => {},
 });
 export function useCalculationContext() {
   return useContext(CalculationContext);
@@ -112,31 +112,31 @@ export const CalculationProvider = ({
     }
   };
 
-  const calculateIBW = (data: User, initialIBWData: IBWFormula[]) => {
-    const updatedData: IBWFormula[] = initialIBWData.map((formula) => {
-      let ibwValue: number = 0;
+//   const calculateIBW = (data: User, initialIBWData: IBWFormula[]) => {
+//     const updatedData: IBWFormula[] = initialIBWData.map((formula) => {
+//       let ibwValue: number = 0;
 
-      switch (formula.Formula) {
-        case "Robinson Formula[1] (1983)":
-          ibwValue = calculateRobinsonIBW(data) || 0;
-          break;
-        case "Devine Formula[3] (1974)":
-          ibwValue = calculateDevineIBW(data) || 0;
-          break;
-        case "Hamwi Formula[4] (1964)":
-          ibwValue = calculateHamwiIBW(data) || 0;
-          break;
-        case "Miller Formula[2] (1983)":
-          ibwValue = calculateMillerIBW(data) || 0;
-          break;
-      }
-      return {
-        ...formula,
-        Value: ibwValue,
-      };
-    });
-    setUpdatedIBWData(updatedData);
-  };
+//       switch (formula.Formula) {
+//         case "Robinson Formula[1] (1983)":
+//           ibwValue = calculateRobinsonIBW(data) || 0;
+//           break;
+//         case "Devine Formula[3] (1974)":
+//           ibwValue = calculateDevineIBW(data) || 0;
+//           break;
+//         case "Hamwi Formula[4] (1964)":
+//           ibwValue = calculateHamwiIBW(data) || 0;
+//           break;
+//         case "Miller Formula[2] (1983)":
+//           ibwValue = calculateMillerIBW(data) || 0;
+//           break;
+//       }
+//       return {
+//         ...formula,
+//         Value: ibwValue,
+//       };
+//     });
+//     setUpdatedIBWData(updatedData);
+//   };
 
   const calculateCactivityCalory = (
     data: User,
@@ -157,8 +157,8 @@ export const CalculationProvider = ({
         calculateBMI,
         bmrValue,
         calculateBMR,
-        updatedIBWData,
-        calculateIBW,
+        // updatedIBWData,
+        // calculateIBW,
         activityCalValue,
         calculateActivityCalory: calculateCactivityCalory,
       }}

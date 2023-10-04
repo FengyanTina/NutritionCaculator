@@ -10,7 +10,7 @@ const BMICategoryTable = ({ weightRangeData }: { weightRangeData: BMICategory[] 
     <View style={styles.table}>
       <View style={styles.tableRow}>
         <Text style={styles.header}>BMI Classification</Text>
-        <Text style={styles.header}>Weight Range</Text>
+        <Text style={styles.header}>Weight Range(Kg)</Text>
         
       </View>
       {weightRangeData.map((category) => (

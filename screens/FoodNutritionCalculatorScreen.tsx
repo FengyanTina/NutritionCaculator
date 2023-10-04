@@ -21,6 +21,14 @@ type NutritionData = {
   sugar_g: number;
 };
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
+
 type Props = NativeStackScreenProps<RootStackParamList, "FoodNutritionCalculator">;
 export default function FoodNutritionCalculatorScreen() {
   const [nutritionData, setNutritionData] = useState<NutritionData>();
@@ -56,25 +64,14 @@ export default function FoodNutritionCalculatorScreen() {
       if (response.status === 200) {
         const data = await response.json();
         setNutritionData(data.items[0]);
-            const notificationContent = {
-              title: 'Nutrition Data',
-              body: `
-                Name: ${data.name}
-                Calories: ${data.calories} kcal
-                Protein: ${data.protein_g} g
-                Carbohydrates: ${data.carbohydrates_total_g} g
-                Sugar: ${data.sugar_g} g
-                Fat: ${data.fat_total_g} g
-                Fat(Saturated): ${data.fat_saturated_g} g
-                Cholesterol: ${data.cholesterol_mg} mg
-                Fiber: ${data.fiber_g} g
-                Potassium: ${data.potassium_mg} mg
-                Sodium: ${data.serving_size_g} mg
-              `,
-            };
-      
-            Notifications.presentNotificationAsync(notificationContent);
-
+        const notificationContent = {
+            title: 'Nutrition Data',
+            body: 'Nutrition Data has been fetched from API',
+          };
+          Notifications.scheduleNotificationAsync({
+            content: notificationContent,
+            trigger: null, // Immediately present the notification
+          });
       } else {
         console.error(`Request failed with status code ${response.status}`);
       }
@@ -99,24 +96,7 @@ export default function FoodNutritionCalculatorScreen() {
       <Button onPress={fetchNutritionData} title="Send" />
       </View>
 
-      <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-      }}>
-      <Animated.View
-        style={[{ width: 100, height: 80, backgroundColor: 'black', margin: 30 }, style]}
-      />
-      <Button
-        title="toggle"
-        onPress={() => {
-          randomWidth.value = Math.random() * 350;
-        }}
-      />
-    </View>
-
+      
       {nutritionData ? (
         <View style={styles.dataContainer}>
           <Text>Nutrition Data </Text>
