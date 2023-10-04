@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }: Props) {
       }
     } else if (selectedCategory === "Food Nutrition") {
       if (item === "Food Nutrition Caculator") {
-        navigation.navigate("Macronutrients");
+        navigation.navigate("FoodNutritionCalculator");
       } else if (item === "Water Intake Caculator") {
         navigation.navigate("IdealBodyWeight");
       }

@@ -55,12 +55,14 @@ import {
           <DataTable />
   
           <Text style={styles.text}>
-            <Text style={styles.boldText}>* TDEE:</Text>
-            Your BMR is still only your energy needs at rest. To determine how
-            many calories you expend on a daily basis, you also need to factor in
-            your physical activities. This will then give you your total daily
-            energy expenditure, or TDEE.
-          </Text>
+          <Text style={styles.boldText}>* BMR(Basal Metabolic Rate):</Text>
+          BMR is your energy needs at rest. 
+        </Text>
+
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>* TDEE:</Text>
+          Your TDEE is  your energy needs at rest and calories you expend on  your physical activities.
+        </Text>
           <Text style={styles.text}>
             <Text style={styles.boldText}>* Mifflin-St Jeor equation</Text>
             The Mifflin-St Jeor equation[3] is one of the most widely used BMR

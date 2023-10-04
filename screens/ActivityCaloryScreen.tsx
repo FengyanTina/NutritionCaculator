@@ -14,8 +14,8 @@ import {
   import DataTable from "../components/DataTable";
   import { User } from "../models/UserInfor";
   
-  type Props = NativeStackScreenProps<RootStackParamList, "BodyIndex">;
-  export default function BodyIndexScreen({ navigation }: Props) {
+  type Props = NativeStackScreenProps<RootStackParamList, "ActivityCalory">;
+  export default function ActivityCaloryScreen({ navigation }: Props) {
     const { activityCalValue,calculateActivityCalory } =
       useContext(CalculationContext);
     const [user, setUser] = useState<User | null>(null);

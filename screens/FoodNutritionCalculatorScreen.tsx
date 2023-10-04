@@ -1,5 +1,7 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, TextInput,StyleSheet } from "react-native";
+import { RootStackParamList } from "../App";
 
 type NutritionData = {
   name: string;
@@ -16,7 +18,8 @@ type NutritionData = {
   sugar_g: number;
 };
 
-export default function MacronutrientsScreen() {
+type Props = NativeStackScreenProps<RootStackParamList, "FoodNutritionCalculator">;
+export default function FoodNutritionCalculatorScreen() {
   const [nutritionData, setNutritionData] = useState<NutritionData>();
   const [query, setQuery] = useState<string>("");
 
