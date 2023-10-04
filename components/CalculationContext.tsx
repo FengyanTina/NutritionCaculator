@@ -11,53 +11,49 @@ import {
   ActivityMETFactor,
   initialActivityMETFactor,
 } from "../models/ActivityMET";
-import { IBWFormula, initialIBWData,calculateRobinsonIBW,calculateHamwiIBW,calculateDevineIBW,calculateMillerIBW } from "../models/IBW";
-
+import {
+  IBWFormula,
+  initialIBWData,
+  calculateRobinsonIBW,
+  calculateHamwiIBW,
+  calculateDevineIBW,
+  calculateMillerIBW,
+} from "../models/IBW";
 
 interface CalculationContextProps {
   activityLevelData: ActivityLevelData[];
-  calculateWeightRange: (user: User) => BMICategory[];
-  selectedActivityLevel: string;
-  setSelectedActivityLevel: (activityLevel: string) => void;
-  selectedNutritionGoal: string;
-  setSelectedNutritionGoal: (nutritionGoal: string) => void;
-  bmiValue: number;
-  calculateBMI: (user: User) => void;
   bmrValue: number;
   calculateBMR: (user: User) => void;
-//   ibwValue: number;
-  //   calculateRobinsonIBW: (user: User) => void;
-  updatedIBWData:IBWFormula[];
-//   calculateDevineIBW: (user: User) => void;
-//   calculateHamwiIBW: (user: User) => void;
-//   calculateMillerIBW: (user: User) => void;
+
+  calculateWeightRange: (user: User) => BMICategory[];
+  bmiValue: number;
+  calculateBMI: (user: User) => void;
+
+  updatedIBWData: IBWFormula[];
+  calculateIBW: (data: User, initialIBWData: IBWFormula[]) => void;
+
   activityCalValue: number;
   calculateActivityCalory: (
     data: User,
     activityTime: number,
     activity: ActivityMETFactor
   ) => void;
-  calculateIBW: (data: User, initialIBWData: IBWFormula[]) => void;
 }
 export const CalculationContext = createContext<CalculationContextProps>({
   activityLevelData: initialActivityLevelData,
-  selectedActivityLevel: "",
-  setSelectedActivityLevel: (activityLevel: string) => {},
-  selectedNutritionGoal: "",
-  setSelectedNutritionGoal: (nutritionGoal: string) => {},
   bmiValue: 0,
   calculateBMI: (user: User) => {},
   bmrValue: 0,
   calculateBMR: (user: User) => {},
   calculateWeightRange: (user: User) => [],
-  updatedIBWData:initialIBWData,
+  updatedIBWData: initialIBWData,
   activityCalValue: 0,
   calculateActivityCalory: (
     data: User,
     activityTime: number,
     activity: ActivityMETFactor
   ) => {},
-  calculateIBW: (data: User, formular: IBWFormula[])=> {},
+  calculateIBW: (data: User, formular: IBWFormula[]) => {},
 });
 export function useCalculationContext() {
   return useContext(CalculationContext);
@@ -68,13 +64,11 @@ export const CalculationProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [selectedActivityLevel, setSelectedActivityLevel] = useState("");
-  const [selectedNutritionGoal, setSelectedNutritionGoal] = useState("");
   const [bmiValue, setBmiValue] = useState(0);
   const [bmrValue, setBmrValue] = useState(0);
-  const [updatedIBWData, setUpdatedIBWData] = useState<IBWFormula[]>(initialIBWData);
+  const [updatedIBWData, setUpdatedIBWData] =
+    useState<IBWFormula[]>(initialIBWData);
   const [activityCalValue, setactivityCalValue] = useState(0);
-  
 
   const calculateBMI = (data: User) => {
     if (data.height && data.weight) {
@@ -120,20 +114,20 @@ export const CalculationProvider = ({
 
   const calculateIBW = (data: User, initialIBWData: IBWFormula[]) => {
     const updatedData: IBWFormula[] = initialIBWData.map((formula) => {
-      let ibwValue:number = 0;
+      let ibwValue: number = 0;
 
       switch (formula.Formula) {
         case "Robinson Formula[1] (1983)":
-            ibwValue =  calculateRobinsonIBW(data)||0 ;  
+          ibwValue = calculateRobinsonIBW(data) || 0;
           break;
         case "Devine Formula[3] (1974)":
-            ibwValue = calculateDevineIBW(data)||0;
+          ibwValue = calculateDevineIBW(data) || 0;
           break;
         case "Hamwi Formula[4] (1964)":
-            ibwValue = calculateHamwiIBW(data)||0;
+          ibwValue = calculateHamwiIBW(data) || 0;
           break;
         case "Miller Formula[2] (1983)":
-            ibwValue = calculateMillerIBW(data)||0;
+          ibwValue = calculateMillerIBW(data) || 0;
           break;
       }
       return {
@@ -159,10 +153,6 @@ export const CalculationProvider = ({
       value={{
         activityLevelData,
         calculateWeightRange,
-        selectedActivityLevel,
-        setSelectedActivityLevel,
-        selectedNutritionGoal,
-        setSelectedNutritionGoal,
         bmiValue,
         calculateBMI,
         bmrValue,

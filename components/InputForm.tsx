@@ -30,23 +30,26 @@ const UserSchema: z.ZodType<User> = z.object({
       invalid_type_error: "Du måste ange ett riktigt num",
     })
     .min(0, { message: "Vikten måste vara positivt." })
-    .positive({ message: "Vikten måste vara positivt." }).optional(),
+    .positive({ message: "Vikten måste vara positivt." })
+    .optional(),
   height: z.coerce
     .number({
       required_error: "Du måste ange en giltigt vikt",
       invalid_type_error: "Du måste ange ett riktigt num",
     })
     .positive({ message: "Höjden måste vara positivt." })
-    .min(0, { message: "Höjden måste vara positivt." }).optional(),
+    .min(0, { message: "Höjden måste vara positivt." })
+    .optional(),
 
   selectedGender: z.union([z.literal("female"), z.literal("male")]).optional(),
   activityTime: z.coerce
-  .number({
-    required_error: "Du måste ange en giltigt vikt",
-    invalid_type_error: "Du måste ange ett riktigt num",
-  })
-  .positive({ message: "Höjden måste vara positivt." })
-  .min(0, { message: "Höjden måste vara positivt." }).optional(),
+    .number({
+      required_error: "Du måste ange en giltigt vikt",
+      invalid_type_error: "Du måste ange ett riktigt num",
+    })
+    .positive({ message: "Höjden måste vara positivt." })
+    .min(0, { message: "Höjden måste vara positivt." })
+    .optional(),
 });
 
 interface InputFormProps {
@@ -58,13 +61,6 @@ export default function InputForm({
   inputsToShow,
   onUserInput,
 }: InputFormProps) {
-  const {
-    selectedActivityLevel,
-    setSelectedActivityLevel,
-    selectedNutritionGoal,
-    setSelectedNutritionGoal,
-  } = useCalculationContext();
-
   const {
     control,
     handleSubmit,
@@ -165,7 +161,7 @@ export default function InputForm({
           />
         </View>
       )}
-      {inputsToShow.includes("selecteActivityLevel") && (
+      {/* {inputsToShow.includes("selecteActivityLevel") && (
         <View style={styles.pickerContainer}>
           <Text style={styles.text}> Activity Level: </Text>
           <Picker
@@ -198,7 +194,7 @@ export default function InputForm({
             />
           </Picker>
         </View>
-      )}
+      )} */}
       <View>
         <View style={styles.submitButton}>
           <Button onPress={sendForm} title="Send" />
