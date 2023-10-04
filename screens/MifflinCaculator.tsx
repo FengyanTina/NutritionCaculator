@@ -37,7 +37,7 @@ import {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <InputForm
-            inputsToShow={["basic", "selecteGender"]}
+            inputsToShow={["age","height","weight", "selecteGender"]}
             onUserInput={onSubmit}
           />
           <View></View>

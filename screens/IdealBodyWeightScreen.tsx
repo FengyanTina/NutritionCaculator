@@ -36,7 +36,7 @@ export default function IdealBodyWeightScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <InputForm
-          inputsToShow={["basic", "selecteGender"]}
+          inputsToShow={["height","age", "selecteGender"]}
           onUserInput={onSubmit}
         />
         <View style={styles.bmiContainer}>    

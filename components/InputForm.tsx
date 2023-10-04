@@ -23,7 +23,7 @@ const UserSchema: z.ZodType<User> = z.object({
       invalid_type_error: "Du måste ange ett riktigt num",
     })
     .positive({ message: "Åldern måste vara positivt." })
-    .int({ message: "Åldern måste vara ett heltal." }),
+    .int({ message: "Åldern måste vara ett heltal." }).optional(),
   weight: z.coerce
     .number({
       required_error: "Du måste ange en giltigt vikt",
@@ -84,9 +84,37 @@ export default function InputForm({
           Keyboard.dismiss();
         }}
       >
-        {inputsToShow.includes("basic") && (
+        {inputsToShow.includes("age") && (
           <View style={styles.inputContainer}>
-            <Controller
+             <Controller
+                control={control}
+                render={({ field: { onBlur, value, onChange } }) => (
+                  <>
+                    <TextInput
+                      style={styles.input}
+                      onBlur={onBlur}
+                      placeholder="Enter Your Age"
+                      value={value?.toString()}
+                      onChangeText={onChange}
+                      keyboardType="numeric"
+                    />
+                    <Text style={styles.errorText}>
+                      {errors.age?.message}
+                    </Text>
+                  </>
+                )}
+                name="age"
+                rules={{
+                  required: "Please enter your age.",
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Age must be a number.",
+                  },
+                }}
+              />
+            </View>
+          )}
+            {/* <Controller
               control={control}
               render={({ field: { onBlur, value, onChange } }) => (
                 <TextInput
@@ -100,39 +128,9 @@ export default function InputForm({
               )}
               name="age"
             />
-            <Text style={styles.errorText}>{errors.age?.message}</Text>
-            <Controller
-              control={control}
-              render={({ field: { onBlur, value, onChange } }) => (
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  placeholder="Enter Your Height (cm)"
-                  value={value?.toString()}
-                  onChangeText={onChange}
-                  keyboardType="numeric"
-                />
-              )}
-              name="height"
-            />
-            <Text style={styles.errorText}>{errors.height?.message}</Text>
-            <Controller
-              control={control}
-              render={({ field: { onBlur, value, onChange } }) => (
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  placeholder="Enter Your Weight (kg)"
-                  value={value?.toString()}
-                  onChangeText={onChange}
-                  keyboardType="numeric"
-                />
-              )}
-              name="weight"
-            />
-            <Text style={styles.errorText}>{errors.weight?.message}</Text>
-          </View>
-        )}
+            <Text style={styles.errorText}>{errors.age?.message}</Text> */}
+          {/* </View> */}
+        {/* )} */}
       </TouchableWithoutFeedback>
       {inputsToShow.includes("selecteGender") && (
         <View style={styles.pickerContainer}>
@@ -161,6 +159,46 @@ export default function InputForm({
           />
         </View>
       )}
+      {inputsToShow.includes("height") && (
+          <View style={styles.inputContainer}>
+           
+            <Controller
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
+                <TextInput
+                  style={styles.input}
+                  onBlur={onBlur}
+                  placeholder="Enter Your Height (cm)"
+                  value={value?.toString()}
+                  onChangeText={onChange}
+                  keyboardType="numeric"
+                />
+              )}
+              name="height"
+            />
+            <Text style={styles.errorText}>{errors.height?.message}</Text>
+            
+          </View>
+        )}
+        {inputsToShow.includes("weight") && (
+          <View style={styles.inputContainer}>
+            <Controller
+              control={control}
+              render={({ field: { onBlur, value, onChange } }) => (
+                <TextInput
+                  style={styles.input}
+                  onBlur={onBlur}
+                  placeholder="Enter Your Weight (kg)"
+                  value={value?.toString()}
+                  onChangeText={onChange}
+                  keyboardType="numeric"
+                />
+              )}
+              name="weight"
+            />
+            <Text style={styles.errorText}>{errors.weight?.message}</Text>
+          </View>
+        )}
       {/* {inputsToShow.includes("selecteActivityLevel") && (
         <View style={styles.pickerContainer}>
           <Text style={styles.text}> Activity Level: </Text>
