@@ -1,4 +1,4 @@
-// ActivityModel.ts
+
 
 export interface ActivityLevelData {
     Level: string;
