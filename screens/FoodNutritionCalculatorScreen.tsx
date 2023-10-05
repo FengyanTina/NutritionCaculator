@@ -11,12 +11,8 @@ import {
 } from "react-native";
 import { RootStackParamList } from "../App";
 import * as Notifications from "expo-notifications";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+
+
 
 type NutritionData = {
   name: string;
@@ -48,6 +44,7 @@ type Props = NativeStackScreenProps<
 export default function FoodNutritionCalculatorScreen() {
   const [nutritionData, setNutritionData] = useState<NutritionData>();
   const [query, setQuery] = useState<string>("");
+  
 
   const fetchNutritionData = async () => {
     const apiKey = "nTwFLtWWPI2RvXmkw0h1Vg==MIT4cmxn84zhDJHb";
@@ -74,7 +71,7 @@ export default function FoodNutritionCalculatorScreen() {
             title: "Nutrition Data",
             body: 'Nutrition Data has been fetched from "calorieninjas.com"',
           };
-
+          
           Notifications.scheduleNotificationAsync({
             content: notificationContent,
             trigger: null,
