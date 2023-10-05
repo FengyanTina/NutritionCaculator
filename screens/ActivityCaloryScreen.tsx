@@ -48,6 +48,11 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
   };
 
   const handleCalculate = () => {
+    if (!weight || !time) {
+      setError("Please enter both weight and time.");
+      return;
+    }
+    setError("");
     const weightNumber = parseFloat(weight);
     const timeNumber = parseFloat(time);
     calculateCactivityCalory(
@@ -101,8 +106,8 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
               />
               {error && <Text style={styles.errorText}>{error}</Text>}
             </View>
-              <View style={styles.submitButton}>
-                <Button onPress={handleCalculate} title="Calculate" />
+            <View style={styles.submitButton}>
+              <Button onPress={handleCalculate} title="Calculate" />
             </View>
             <View style={styles.listTitleContainer}>
               <Text style={styles.listTitle}>Activity and Calories Burned</Text>

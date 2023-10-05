@@ -14,7 +14,6 @@ import {
 } from "react-native";
 
 
-
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
    
@@ -29,29 +28,69 @@ export default function HomeScreen({ navigation }: Props) {
   } = useContext(HomeNavigationContext);
   const [selectedItem, setSelectedItem] = useState<string>("");
 
-  const handleItemPress = (item: string) => {
+//   const handleItemPress = (item: string) => {
+//     toggleModal();
+//     if (selectedCategory === "Body Index") {
+//       if (item === "Mifflin St. Jeor Calculator") {
+//         navigation.navigate("MifflinCaculator");
+//       } else if (item === "Calculate BMI") {
+//         navigation.navigate("CalculateBMI");
+//       }
+//     } else if (selectedCategory === "Food Nutrition") {
+     
+//         navigation.navigate("FoodNutritionCalculator");
+     
+//     } else if (selectedCategory === "Weight Manager") {
+//       if (item === "Ideal Body Weight") {
+//         navigation.navigate("IdealBodyWeight");
+//       } else if (item === "Activity Calory Caculator") {
+//         navigation.navigate("ActivityCalory");
+//       }
+//     }
+//     setSelectedItem(item);
+//   };
+ 
+const handleItemPress = (item: string) => {
     toggleModal();
-    if (selectedCategory === "Body Index") {
-      if (item === "Mifflin St. Jeor Calculator") {
-        navigation.navigate("MifflinCaculator");
-      } else if (item === "Calculate BMI") {
-        navigation.navigate("CalculateBMI");
-      }
-    } else if (selectedCategory === "Food Nutrition") {
-     
+  
+    switch (selectedCategory) {
+      case "Body Index":
+        switch (item) {
+          case "Mifflin St. Jeor Calculator":
+            navigation.navigate("MifflinCaculator");
+            break;
+          case "Calculate BMI":
+            navigation.navigate("CalculateBMI");
+            break;
+          default:
+            break;
+        }
+        break;
+  
+      case "Food Nutrition":
         navigation.navigate("FoodNutritionCalculator");
-     
-    } else if (selectedCategory === "Weight Manager") {
-      if (item === "Ideal Body Weight") {
-        navigation.navigate("IdealBodyWeight");
-      } else if (item === "Activity Calory Caculator") {
-        navigation.navigate("ActivityCalory");
-      }
+        break;
+  
+      case "Weight Manager":
+        switch (item) {
+          case "Ideal Body Weight":
+            navigation.navigate("IdealBodyWeight");
+            break;
+          case "Activity Calory Caculator":
+            navigation.navigate("ActivityCalory");
+            break;
+          default:
+            break;
+        }
+        break;
+  
+      default:
+        break;
     }
+  
     setSelectedItem(item);
   };
- 
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Body & Nutrition Caculator</Text>

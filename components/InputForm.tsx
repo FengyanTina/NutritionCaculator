@@ -154,7 +154,7 @@ export default function InputForm({
 
       <View>
         <View style={styles.submitButton}>
-          <Button onPress={sendForm} title="Send" />
+          <Button onPress={sendForm} title="Calculate" />
         </View>
       </View>
     </SafeAreaView>

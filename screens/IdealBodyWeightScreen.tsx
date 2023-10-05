@@ -12,7 +12,6 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
-import { z } from "zod";
 import {
   IBWFormula,
   calculateDevineIBW,
@@ -23,20 +22,6 @@ import {
 } from "../models/IBW";
 import { Picker } from "@react-native-picker/picker";
 
-const InputSchema = z.object({
-  height: z
-    .string()
-    .refine((value) => !isNaN(parseFloat(value)), {
-      message: "Height must be a number",
-    })
-    .refine((value) => value.length > 0, {
-      message: "Height is required",
-    }),
-  gender: z.string().refine((value) => value.length > 0, {
-    message: "Gender is required",
-  }),
-});
-
 export default function IBWInputForm() {
   const [height, setHeight] = useState<string>("");
   const [gender, setGender] = useState<string>("");
@@ -45,7 +30,7 @@ export default function IBWInputForm() {
 
   const handleHeightBlur = () => {
     if (!height.trim()) {
-      setError("Please enter a valid weight.");
+      setError("Please enter a valid height.");
     } else if (!/^\d+$/.test(height)) {
       setError("Please enter a valid number.");
     } else {
@@ -55,7 +40,7 @@ export default function IBWInputForm() {
 
   const handleGenderBlur = () => {
     if (!gender) {
-      setError("Please select a gender."); 
+      setError("Please select a gender.");
     }
   };
 
@@ -88,17 +73,18 @@ export default function IBWInputForm() {
     });
     setUpdatedIBWData(updatedData);
   };
-
+  //on submit the Caculate button
   const handleCalculate = () => {
     if (!height || !gender) {
-        setError("Please enter both height and gender.");
-        return;
-      }
-      setError('');
-      calculateIBW(Number(height), gender, initialIBWData);
-  
-      setHeight("");
-      setGender("");
+      setError("Please enter both height and gender.");
+      return;
+    }
+    const heightNumber = parseFloat(height);
+    setError("");
+    calculateIBW(heightNumber, gender, initialIBWData);
+
+    setHeight("");
+    setGender("");
   };
 
   return (
@@ -125,8 +111,8 @@ export default function IBWInputForm() {
                 style={{ height: 50, width: 150 }}
                 selectedValue={gender}
                 onValueChange={(itemValue) => {
-                    setGender(itemValue);
-                  }}
+                  setGender(itemValue);
+                }}
                 onBlur={handleGenderBlur}
               >
                 <Picker.Item label="Select Gender" value="" />
@@ -227,9 +213,9 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   listItemContainer: {
-    flexDirection: "row", 
-    alignItems: "center", 
-    justifyContent: "space-between", 
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 5,
     padding: 5,
     flex: 1,
