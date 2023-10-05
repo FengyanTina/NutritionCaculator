@@ -53,14 +53,9 @@ export default function IBWInputForm() {
     }
   };
 
-  const handleGenderChange = (itemValue: string) => {
-    setGender(itemValue);
-    // Clear the error message when a valid option is selected
-    setError("");
-  };
   const handleGenderBlur = () => {
     if (!gender) {
-      setError("Please select a gender."); // No option is selected
+      setError("Please select a gender."); 
     }
   };
 
@@ -96,11 +91,14 @@ export default function IBWInputForm() {
 
   const handleCalculate = () => {
     if (!height || !gender) {
-      const heightNumber = parseFloat(height);
-      calculateIBW(heightNumber, gender, initialIBWData);
+        setError("Please enter both height and gender.");
+        return;
+      }
+      setError('');
+      calculateIBW(Number(height), gender, initialIBWData);
+  
       setHeight("");
       setGender("");
-    }
   };
 
   return (
@@ -116,7 +114,7 @@ export default function IBWInputForm() {
               style={styles.input}
               placeholder="Enter Your Height (cm)"
               value={height}
-              onChangeText={(text) => setHeight(text)}
+              onChangeText={setHeight}
               onBlur={handleHeightBlur}
               keyboardType="numeric"
             />
@@ -126,7 +124,9 @@ export default function IBWInputForm() {
               <Picker
                 style={{ height: 50, width: 150 }}
                 selectedValue={gender}
-                onValueChange={handleGenderChange}
+                onValueChange={(itemValue) => {
+                    setGender(itemValue);
+                  }}
                 onBlur={handleGenderBlur}
               >
                 <Picker.Item label="Select Gender" value="" />
@@ -227,9 +227,9 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   listItemContainer: {
-    flexDirection: "row", // Display items in a row
-    alignItems: "center", // Vertically center items
-    justifyContent: "space-between", // Add space between Value and Formula
+    flexDirection: "row", 
+    alignItems: "center", 
+    justifyContent: "space-between", 
     marginBottom: 5,
     padding: 5,
     flex: 1,

@@ -76,31 +76,26 @@ export default function IBWInputForm() {
 
   const handleCalculate = () => {
     if (!height || !gender) {
-      // Handle validation errors
+
       setValidationErrors(["Please enter both height and gender."]);
       return;
     }
 
-    // Clear any previous validation errors
     setValidationErrors(null);
 
-    // Call the calculateIBW function with the provided height and gender
     calculateIBW(Number(height), gender, initialIBWData);
 
-    // Clear the input fields
     setHeight("");
     setGender("");
   };
 
   return (
-    <SafeAreaView >
-         
+    <SafeAreaView>
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
         }}
       >
-        
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -123,7 +118,7 @@ export default function IBWInputForm() {
         </View>
       </TouchableWithoutFeedback>
       <View style={styles.submitButton}>
-        <View >
+        <View>
           <Button onPress={handleCalculate} title="Calculate" />
         </View>
       </View>
@@ -141,30 +136,45 @@ export default function IBWInputForm() {
         />
       </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
-      <Text style={styles.text}>
+        <Text style={styles.text}>
           <Text style={styles.boldText}>* Formulas:</Text>
-          Several different formulas have been developed over the years to estimate ideal body weight.
-          
+          Several different formulas have been developed over the years to
+          estimate ideal body weight.
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
-          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+          <Text style={styles.boldText}>
+            * Ideal Body Weight: A Range Rather Than One Number
+          </Text>
+          These formulas do not take into account other factors, such as lean
+          body mass, genetic makeup, physical activity, or age.
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
-          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+          <Text style={styles.boldText}>
+            * Ideal Body Weight: A Range Rather Than One Number
+          </Text>
+          These formulas do not take into account other factors, such as lean
+          body mass, genetic makeup, physical activity, or age.
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
-          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+          <Text style={styles.boldText}>
+            * Ideal Body Weight: A Range Rather Than One Number
+          </Text>
+          These formulas do not take into account other factors, such as lean
+          body mass, genetic makeup, physical activity, or age.
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
-          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+          <Text style={styles.boldText}>
+            * Ideal Body Weight: A Range Rather Than One Number
+          </Text>
+          These formulas do not take into account other factors, such as lean
+          body mass, genetic makeup, physical activity, or age.
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>* Ideal Body Weight: A Range Rather Than One Number</Text>
-          These formulas do not take into account other factors, such as lean body mass, genetic makeup, physical activity, or age.
+          <Text style={styles.boldText}>
+            * Ideal Body Weight: A Range Rather Than One Number
+          </Text>
+          These formulas do not take into account other factors, such as lean
+          body mass, genetic makeup, physical activity, or age.
         </Text>
       </ScrollView>
     </SafeAreaView>
@@ -181,7 +191,7 @@ const styles = StyleSheet.create({
   submitButton: {
     margin: 10,
     width: "100%",
-alignItems:"center"
+    alignItems: "center",
   },
   input: {
     height: 40,
@@ -209,7 +219,6 @@ alignItems:"center"
     marginBottom: 5,
     padding: 5,
     flex: 1,
-
   },
   ibwValue: {
     fontWeight: "bold",
@@ -230,13 +239,13 @@ alignItems:"center"
   bmiContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:"center",
+    justifyContent: "center",
   },
   ibwValueBox: {
     backgroundColor: "#e0e0e0",
     padding: 5,
     borderRadius: 5,
-    marginTop:10,
-    marginBottom:10,
+    marginTop: 10,
+    marginBottom: 10,
   },
 });

@@ -13,13 +13,10 @@ import {
 import { RootStackParamList } from "../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-
 import {
   ActivityMETFactor,
   initialActivityMETFactor,
 } from "../models/ActivityMET";
-
-
 
 type Props = NativeStackScreenProps<RootStackParamList, "ActivityCalory">;
 export default function ActivityCaloryScreen({ navigation }: Props) {
@@ -32,21 +29,21 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
 
   const handleWeightBlur = () => {
     if (!weight.trim()) {
-      setError("Please enter a valid weight."); 
+      setError("Please enter a valid weight.");
     } else if (!/^\d+$/.test(weight)) {
-      setError("Please enter a valid number."); 
+      setError("Please enter a valid number.");
     } else {
-      setError(""); 
+      setError("");
     }
   };
 
   const handleTimeBlur = () => {
     if (!time.trim()) {
-      setError("Please enter a valid time."); 
+      setError("Please enter a valid time.");
     } else if (!/^\d+$/.test(time)) {
-      setError("Please enter a valid number."); 
+      setError("Please enter a valid number.");
     } else {
-      setError(""); 
+      setError("");
     }
   };
 
@@ -89,7 +86,7 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
                 style={styles.input}
                 placeholder="Enter Your weight (kg)"
                 value={weight}
-                onChangeText={(text) => setWeight(text)} 
+                onChangeText={(text) => setWeight(text)}
                 onBlur={handleWeightBlur}
                 keyboardType="numeric"
               />
@@ -98,17 +95,14 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
                 style={styles.input}
                 placeholder="Enter Activity Time(minutes)"
                 value={time}
-                onChangeText={(text) => setTime(text)} 
-                onBlur={handleTimeBlur} 
+                onChangeText={(text) => setTime(text)}
+                onBlur={handleTimeBlur}
                 keyboardType="numeric"
               />
               {error && <Text style={styles.errorText}>{error}</Text>}
             </View>
-
-            <View>
               <View style={styles.submitButton}>
                 <Button onPress={handleCalculate} title="Calculate" />
-              </View>
             </View>
             <View style={styles.listTitleContainer}>
               <Text style={styles.listTitle}>Activity and Calories Burned</Text>
@@ -126,7 +120,7 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
             </View>
 
             <Text style={styles.text}>
-              Being health-conscious means that you need to know how many
+              *Being health-conscious means that you need to know how many
               calories you burn in a day. Figuring out how much energy you
               expend any given day can help you determine how many calories you
               need to consume to either maintain a healthy weight
