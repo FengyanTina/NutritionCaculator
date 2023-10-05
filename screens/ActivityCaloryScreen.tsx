@@ -8,8 +8,6 @@ import {
   TextInput,
   Button,
   Keyboard,
-  TouchableOpacity,
-  FlatList,
   ScrollView,
 } from "react-native";
 import { RootStackParamList } from "../App";
@@ -20,29 +18,8 @@ import {
   ActivityMETFactor,
   initialActivityMETFactor,
 } from "../models/ActivityMET";
-import { FlashList } from "@shopify/flash-list";
-import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-// const InputSchema = z.object({
-//     weight: z
-//       .string()
-//       .refine((value) => !isNaN(parseFloat(value)), {
-//         message: "Height must be a number",
-//       })
-//       .refine((value) => value.length > 0, {
-//         message: "Height is required",
-//       }),
-//       time: z
-//       .string()
-//       .refine((value) => !isNaN(parseFloat(value)), {
-//         message: "Height must be a number",
-//       })
-//       .refine((value) => value.length > 0, {
-//         message: "Height is required",
-//       }),
-//   });
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "ActivityCalory">;
 export default function ActivityCaloryScreen({ navigation }: Props) {
@@ -52,28 +29,26 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
     initialActivityMETFactor
   );
   const [error, setError] = useState("");
-  
+
   const handleWeightBlur = () => {
-    if (!weight.trim() ) {
-      setError("Please enter a valid weight."); // Input is empty
+    if (!weight.trim()) {
+      setError("Please enter a valid weight."); 
     } else if (!/^\d+$/.test(weight)) {
-      setError("Please enter a valid number."); // Input is not a number
+      setError("Please enter a valid number."); 
     } else {
-      setError(""); // Clear the error message if the input is valid
+      setError(""); 
     }
   };
-
 
   const handleTimeBlur = () => {
-    if (!time.trim() ) {
-      setError("Please enter a valid time."); // Input is empty
+    if (!time.trim()) {
+      setError("Please enter a valid time."); 
     } else if (!/^\d+$/.test(time)) {
-      setError("Please enter a valid number."); // Input is not a number
+      setError("Please enter a valid number."); 
     } else {
-      setError(""); // Clear the error message if the input is valid
+      setError(""); 
     }
   };
-
 
   const handleCalculate = () => {
     const weightNumber = parseFloat(weight);
@@ -114,20 +89,20 @@ export default function ActivityCaloryScreen({ navigation }: Props) {
                 style={styles.input}
                 placeholder="Enter Your weight (kg)"
                 value={weight}
-                onChangeText={(text) => setWeight(text)} // Update the time state as the user types
-        onBlur={handleWeightBlur} 
+                onChangeText={(text) => setWeight(text)} 
+                onBlur={handleWeightBlur}
                 keyboardType="numeric"
               />
               {error && <Text style={styles.errorText}>{error}</Text>}
               <TextInput
-        style={styles.input}
-        placeholder="Enter Activity Time(minutes)"
-        value={time}
-        onChangeText={(text) => setTime(text)} // Update the time state as the user types
-        onBlur={handleTimeBlur} // Check for errors when the input field loses focus
-        keyboardType="numeric"
-      />
-      {error && <Text style={styles.errorText}>{error}</Text>}
+                style={styles.input}
+                placeholder="Enter Activity Time(minutes)"
+                value={time}
+                onChangeText={(text) => setTime(text)} 
+                onBlur={handleTimeBlur} 
+                keyboardType="numeric"
+              />
+              {error && <Text style={styles.errorText}>{error}</Text>}
             </View>
 
             <View>
