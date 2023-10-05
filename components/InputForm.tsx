@@ -19,35 +19,27 @@ import React from "react";
 const UserSchema: z.ZodType<User> = z.object({
   age: z.coerce
     .number({
-      required_error: "You must enter a number",
+      required_error: "Enter a valid number",
       invalid_type_error: "You must enter a number",
     })
     .positive({ message: "The number must be positive." })
     .int({ message: "Age must be a whole number." }),
   weight: z.coerce
     .number({
-      required_error: "You must enter a valid weight",
+      required_error: "Enter a valid number",
       invalid_type_error: "You must enter a number",
     })
     .min(0, { message: "Weight must be positive." })
     .positive({ message: "Weight must be positive." }),
   height: z.coerce
     .number({
-      required_error: "Enter a valid height",
-      invalid_type_error: "Height must be a number",
+      required_error: "Enter a valid number",
+      invalid_type_error: "You must enter a number",
     })
     .positive({ message: "Height must be positive." })
     .min(0, { message: "Height must be positive." }),
 
   selectedGender: z.union([z.literal("female"), z.literal("male")]).optional(),
-//   activityTime: z.coerce
-//     .number({
-//       required_error: "Du måste ange en giltigt vikt",
-//       invalid_type_error: "Du måste ange ett riktigt num",
-//     })
-//     .positive({ message: "Höjden måste vara positivt." })
-//     .min(0, { message: "Höjden måste vara positivt." })
-//     .optional(),
 });
 
 interface InputFormProps {
@@ -159,80 +151,7 @@ export default function InputForm({
           />
         </View>
       )}
-      {/* {inputsToShow.includes("height") && (
-          <View style={styles.inputContainer}>
-           
-            <Controller
-              control={control}
-              render={({ field: { onBlur, value, onChange } }) => (
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  placeholder="Enter Your Height (cm)"
-                  value={value?.toString()}
-                  onChangeText={onChange}
-                  keyboardType="numeric"
-                />
-              )}
-              name="height"
-            />
-            <Text style={styles.errorText}>{errors.height?.message}</Text>
-            
-          </View>
-        )} */}
-        {/* {inputsToShow.includes("weight") && (
-          <View style={styles.inputContainer}>
-            <Controller
-              control={control}
-              render={({ field: { onBlur, value, onChange } }) => (
-                <TextInput
-                  style={styles.input}
-                  onBlur={onBlur}
-                  placeholder="Enter Your Weight (kg)"
-                  value={value?.toString()}
-                  onChangeText={onChange}
-                  keyboardType="numeric"
-                />
-              )}
-              name="weight"
-            />
-            <Text style={styles.errorText}>{errors.weight?.message}</Text>
-          </View>
-        )} */}
-      {/* {inputsToShow.includes("selecteActivityLevel") && (
-        <View style={styles.pickerContainer}>
-          <Text style={styles.text}> Activity Level: </Text>
-          <Picker
-            selectedValue={selectedActivityLevel}
-            style={{ height: 50, width: 150, flexWrap: "wrap" }}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedActivityLevel(itemValue)
-            }
-          >
-            <Picker.Item label="Select Activity Level" value="" />
-            <Picker.Item
-              label="Little to no exercise"
-              value="Little to no exercise"
-            />
-            <Picker.Item
-              label="Light exercise 1-2 days/week"
-              value="Light exercise 1-2 days/week"
-            />
-            <Picker.Item
-              label="Moderate exercise 3-5 days/week "
-              value="Moderate exercise 3-5 days/week "
-            />
-            <Picker.Item
-              label="Hard exercise 6-7 days/week "
-              value="Hard exercise 6-7 days/week"
-            />
-            <Picker.Item
-              label="Hard daily exercise and physical job or two times a day training"
-              value="Hard daily exercise and physical job,or two times a day training"
-            />
-          </Picker>
-        </View>
-      )} */}
+
       <View>
         <View style={styles.submitButton}>
           <Button onPress={sendForm} title="Send" />

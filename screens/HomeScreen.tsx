@@ -13,8 +13,11 @@ import {
   ImageBackground,
 } from "react-native";
 
+
+
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
+   
   const {
     isModalVisible,
     selectedCategory,
@@ -35,11 +38,9 @@ export default function HomeScreen({ navigation }: Props) {
         navigation.navigate("CalculateBMI");
       }
     } else if (selectedCategory === "Food Nutrition") {
-      if (item === "Food Nutrition Caculator") {
+     
         navigation.navigate("FoodNutritionCalculator");
-      } else if (item === "Water Intake Caculator") {
-        navigation.navigate("IdealBodyWeight");
-      }
+     
     } else if (selectedCategory === "Weight Manager") {
       if (item === "Ideal Body Weight") {
         navigation.navigate("IdealBodyWeight");
@@ -49,6 +50,7 @@ export default function HomeScreen({ navigation }: Props) {
     }
     setSelectedItem(item);
   };
+ 
 
   return (
     <View style={styles.container}>
@@ -124,6 +126,9 @@ export default function HomeScreen({ navigation }: Props) {
             <TouchableOpacity onPress={toggleModal}>
               <Text style={styles.closeButton}>Close</Text>
             </TouchableOpacity>
+          </View>
+          <View>
+    
           </View>
         </TouchableOpacity>
       </Modal>

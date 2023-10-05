@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, TextInput,StyleSheet } from "react-native";
+import { View, Text, Button, TextInput,StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { RootStackParamList } from "../App";
 import * as Notifications from 'expo-notifications';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
@@ -64,16 +64,23 @@ export default function FoodNutritionCalculatorScreen() {
       if (response.status === 200) {
         const data = await response.json();
         setNutritionData(data.items[0]);
-        const notificationContent = {
-            title: 'Nutrition Data',
-            body: 'Nutrition Data has been fetched from API',
-          };
-          Notifications.scheduleNotificationAsync({
-            content: notificationContent,
-            trigger: null, // Immediately present the notification
-          });
+        if (data.items[0]) {
+            // Set the nutrition data
+            setNutritionData(data.items[0]);
+    
+            // Schedule the notification
+            const notificationContent = {
+              title: 'Nutrition Data',
+              body: 'Nutrition Data has been fetched from "calorieninjas.com"',
+            };
+    
+            Notifications.scheduleNotificationAsync({
+              content: notificationContent,
+              trigger: null,
+            });}
       } else {
-        console.error(`Request failed with status code ${response.status}`);
+        // Handle unsuccessful data fetching (e.g., show an error message)
+        console.error('Failed to fetch nutrition data');
       }
     } catch (error) {
       console.error("Error:", error);
@@ -85,6 +92,9 @@ export default function FoodNutritionCalculatorScreen() {
   }, []);
 
   return (
+    <TouchableWithoutFeedback onPress={() => {
+        Keyboard.dismiss();
+      }}>
     <View  style={styles.inputContainer}>
       <TextInput
       style={styles.input}
@@ -116,6 +126,7 @@ export default function FoodNutritionCalculatorScreen() {
         <Text>No nutrition data available</Text>
       )}
     </View>
+    </TouchableWithoutFeedback>
   );
 }
   const styles = StyleSheet.create({

@@ -32,12 +32,12 @@ interface CalculationContextProps {
 //   updatedIBWData: IBWFormula[];
 //   calculateIBW: (data: User, initialIBWData: IBWFormula[]) => void;
 
-  activityCalValue: number;
-  calculateActivityCalory: (
-    data: User,
-    activityTime: number,
-    activity: ActivityMETFactor
-  ) => void;
+//   activityCalValue: number;
+//   calculateActivityCalory: (
+//     data: User,
+//     activityTime: number,
+//     activity: ActivityMETFactor
+//   ) => void;
 }
 export const CalculationContext = createContext<CalculationContextProps>({
   activityLevelData: initialActivityLevelData,
@@ -47,12 +47,12 @@ export const CalculationContext = createContext<CalculationContextProps>({
   calculateBMR: (user: User) => {},
   calculateWeightRange: (user: User) => [],
 //   updatedIBWData: initialIBWData,
-  activityCalValue: 0,
-  calculateActivityCalory: (
-    data: User,
-    activityTime: number,
-    activity: ActivityMETFactor
-  ) => {},
+//   activityCalValue: 0,
+//   calculateActivityCalory: (
+//     data: User,
+//     activityTime: number,
+//     activity: ActivityMETFactor
+//   ) => {},
 //   calculateIBW: (data: User, formular: IBWFormula[]) => {},
 });
 export function useCalculationContext() {
@@ -66,9 +66,9 @@ export const CalculationProvider = ({
 }) => {
   const [bmiValue, setBmiValue] = useState(0);
   const [bmrValue, setBmrValue] = useState(0);
-  const [updatedIBWData, setUpdatedIBWData] =
-    useState<IBWFormula[]>(initialIBWData);
-  const [activityCalValue, setactivityCalValue] = useState(0);
+//   const [updatedIBWData, setUpdatedIBWData] =
+//     useState<IBWFormula[]>(initialIBWData);
+//   const [activityCalValue, setactivityCalValue] = useState(0);
 
   const calculateBMI = (data: User) => {
     if (data.height && data.weight) {
@@ -138,16 +138,16 @@ export const CalculationProvider = ({
 //     setUpdatedIBWData(updatedData);
 //   };
 
-  const calculateCactivityCalory = (
-    data: User,
-    activityTime: number,
-    activity: ActivityMETFactor
-  ) => {
-    if (data.weight && activityTime) {
-      const cal = (activityTime * activity.METFactor * 3.5 * data.weight) / 200;
-      setactivityCalValue(cal);
-    }
-  };
+//   const calculateCactivityCalory = (
+//     data: User,
+//     activityTime: number,
+//     activity: ActivityMETFactor
+//   ) => {
+//     if (data.weight && activityTime) {
+//       const cal = (activityTime * activity.METFactor * 3.5 * data.weight) / 200;
+//       setactivityCalValue(cal);
+//     }
+//   };
   return (
     <CalculationContext.Provider
       value={{
@@ -159,8 +159,8 @@ export const CalculationProvider = ({
         calculateBMR,
         // updatedIBWData,
         // calculateIBW,
-        activityCalValue,
-        calculateActivityCalory: calculateCactivityCalory,
+        // activityCalValue,
+        // calculateActivityCalory: calculateCactivityCalory,
       }}
     >
       {children}
