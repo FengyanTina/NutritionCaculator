@@ -34,18 +34,7 @@ export default function FoodNutritionCalculatorScreen() {
   const [nutritionData, setNutritionData] = useState<NutritionData>();
   const [query, setQuery] = useState<string>("");
 
-  const randomWidth = useSharedValue(10);
-
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
-
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
-    };
-  });
+ 
 
   const fetchNutritionData = async () => {
     const apiKey = "nTwFLtWWPI2RvXmkw0h1Vg==MIT4cmxn84zhDJHb";
