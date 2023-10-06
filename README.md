@@ -13,6 +13,7 @@ Building Project:
 4.Componnets:
 - React Components:
 View
+Button
 Text
 TextInput
 Screen
@@ -23,6 +24,7 @@ ScrollView
 Hook Form
 SafeAreaView
 ...
+
 - Expo Components:
 StatusBar
 BlurView
@@ -34,9 +36,25 @@ KeepAwake: not really needed but just to meet the requirement of the assignment
 componets: 
 -BMICategoryTable: to show the BMI  calculating results
 -CalculationContext: to calculate values for MifflinCaculatorScreen and CaculateBMI 
-models
-screens
+-DataTable to show the MifflinCaculation result.
+-HomNavigationContext: the home screen buttons and navigations from each button
+-InputForm: for MifflinCaculator input and CalculateBMI input
+
+models:
+-ActivityLevelData: for the MifflinCaculatorScreen
+-ActivityMET: for the ActivityCaloryScreen
+-BMI: for CalculateBMIScreen
+-IBW: for IdealBodyWeightScreen
+UserInfor: for the User object input to ge age, height, weight and gender values
+
+screens:
+-ActivityCaloryScreen
+-CalculateBMIScreen
+-FoodNutritionCalculatorScreen
+-HomeScreen
+-IdealBodyWeightScreen
+-mifflinCaculatorScreen
 
 
 
-    App for Android, it can run on ios but layout changes. 
+App for Android, it can run on ios but layout changes. 
