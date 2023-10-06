@@ -1,13 +1,13 @@
 # NutritionCaculator
 
-This app is use to calculate Body and Nutrition data. It includes 5 screens:
+This app is use to calculate Body and Nutrition data. It includes 3 categories and 5 screens:
 1. Body Index Category: Mifflin St. Jeor Calculator (TDEE & BMR) screen and BMI calculator screen
 2: Food Nutrition Category: Food Nutrition Caculator screen using API to retrive food nutrition data
 3: Weight Manager Category: Ideal Body Weight screen and Ativity Calory Caculator screen
 
 Building Project:
 1. Expo + React Native
-2. Using context and reat hooks: two contexts, one for the home screen navigation (HomeNavigationContext) another one for the shared calculation for some screens (CalculationContext).
+2. Using context and react hooks: two contexts, one for the home screen navigation (HomeNavigationContext) another one for the shared calculation for some screens (CalculationContext).
 3. Some screens share the state from calculation context, some screens that do not need shared states using its own states inside the screen. 
 
 4.Componnets:
@@ -33,6 +33,7 @@ Notification: (half working)only for the nutrition API to inform the user the da
 KeepAwake: not really needed but just to meet the requirement of the assignment
 
 5. Structure:
+
 componets: 
 -BMICategoryTable: to show the BMI  calculating results
 -CalculationContext: to calculate values for MifflinCaculatorScreen and CaculateBMI 
@@ -45,7 +46,7 @@ models:
 -ActivityMET: for the ActivityCaloryScreen
 -BMI: for CalculateBMIScreen
 -IBW: for IdealBodyWeightScreen
-UserInfor: for the User object input to ge age, height, weight and gender values
+-UserInfor: for the User object input to ge age, height, weight and gender values
 
 screens:
 -ActivityCaloryScreen
