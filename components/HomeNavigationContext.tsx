@@ -1,9 +1,10 @@
 import { createContext, useState, useContext } from "react";
 const bodyIndexCategory = ["Mifflin St. Jeor Calculator", "Calculate BMI"];
-const macroNutrientsCategory = [
-  "Food Nutrition Caculator",
+const macroNutrientsCategory = ["Food Nutrition Caculator"];
+const weightManagerCategory = [
+  "Ideal Body Weight",
+  "Activity Calory Caculator",
 ];
-const weightManagerCategory = ["Ideal Body Weight", "Activity Calory Caculator"];
 export const HomeNavigationContext = createContext({
   isModalVisible: false,
   selectedCategory: "Body Index",

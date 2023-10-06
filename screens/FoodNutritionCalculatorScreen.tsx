@@ -12,8 +12,6 @@ import {
 import { RootStackParamList } from "../App";
 import * as Notifications from "expo-notifications";
 
-
-
 type NutritionData = {
   name: string;
   calories: number;
@@ -44,7 +42,6 @@ type Props = NativeStackScreenProps<
 export default function FoodNutritionCalculatorScreen() {
   const [nutritionData, setNutritionData] = useState<NutritionData>();
   const [query, setQuery] = useState<string>("");
-  
 
   const fetchNutritionData = async () => {
     const apiKey = "nTwFLtWWPI2RvXmkw0h1Vg==MIT4cmxn84zhDJHb";
@@ -71,13 +68,13 @@ export default function FoodNutritionCalculatorScreen() {
             title: "Nutrition Data",
             body: 'Nutrition Data has been fetched from "calorieninjas.com"',
           };
-          
+
           Notifications.scheduleNotificationAsync({
             content: notificationContent,
             trigger: null,
           });
         }
-       }
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -106,7 +103,7 @@ export default function FoodNutritionCalculatorScreen() {
 
         {nutritionData ? (
           <View style={styles.dataContainer}>
-            <Text >Nutrition Data </Text>
+            <Text>Nutrition Data </Text>
             <Text>Name: {nutritionData.name}</Text>
             <Text>Calories: {nutritionData.calories} kcal</Text>
             <Text>Protein: {nutritionData.protein_g} g</Text>
@@ -153,13 +150,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
     padding: 20,
     borderRadius: 8,
-    elevation: 3, 
-    width:"65%",
-    alignItems:"flex-start"
+    elevation: 3,
+    width: "65%",
+    alignItems: "flex-start",
   },
-dataLable:{
-
-},
-dataName:{},
-  
 });

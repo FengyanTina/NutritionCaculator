@@ -73,7 +73,7 @@ export default function IBWInputForm() {
     });
     setUpdatedIBWData(updatedData);
   };
-  //on submit the Caculate button
+  //submit the Caculate button
   const handleCalculate = () => {
     if (!height || !gender) {
       setError("Please enter both height and gender.");
