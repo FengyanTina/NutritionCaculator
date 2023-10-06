@@ -12,10 +12,11 @@ import {
   FlatList,
   ImageBackground,
 } from "react-native";
-
+import { useKeepAwake } from 'expo-keep-awake';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
+ useKeepAwake();
    
   const {
     isModalVisible,
@@ -27,28 +28,6 @@ export default function HomeScreen({ navigation }: Props) {
     handleCategoryChange,
   } = useContext(HomeNavigationContext);
   const [selectedItem, setSelectedItem] = useState<string>("");
-
-//   const handleItemPress = (item: string) => {
-//     toggleModal();
-//     if (selectedCategory === "Body Index") {
-//       if (item === "Mifflin St. Jeor Calculator") {
-//         navigation.navigate("MifflinCaculator");
-//       } else if (item === "Calculate BMI") {
-//         navigation.navigate("CalculateBMI");
-//       }
-//     } else if (selectedCategory === "Food Nutrition") {
-     
-//         navigation.navigate("FoodNutritionCalculator");
-     
-//     } else if (selectedCategory === "Weight Manager") {
-//       if (item === "Ideal Body Weight") {
-//         navigation.navigate("IdealBodyWeight");
-//       } else if (item === "Activity Calory Caculator") {
-//         navigation.navigate("ActivityCalory");
-//       }
-//     }
-//     setSelectedItem(item);
-//   };
  
 const handleItemPress = (item: string) => {
     toggleModal();

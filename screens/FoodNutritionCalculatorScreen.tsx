@@ -77,9 +77,7 @@ export default function FoodNutritionCalculatorScreen() {
             trigger: null,
           });
         }
-      } else {
-        console.error("Failed to fetch nutrition data");
-      }
+       }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -108,7 +106,7 @@ export default function FoodNutritionCalculatorScreen() {
 
         {nutritionData ? (
           <View style={styles.dataContainer}>
-            <Text>Nutrition Data </Text>
+            <Text >Nutrition Data </Text>
             <Text>Name: {nutritionData.name}</Text>
             <Text>Calories: {nutritionData.calories} kcal</Text>
             <Text>Protein: {nutritionData.protein_g} g</Text>
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 30,
   },
 
   input: {
@@ -143,15 +141,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 30,
     width: "65%",
-    height: 40,
+    height: 60,
     margin: 12,
   },
 
   submitButton: {
-    margin: 20,
+    margin: 30,
     width: "65%",
   },
   dataContainer: {
-    marginTop: 20,
+    marginTop: 30,
+    padding: 20,
+    borderRadius: 8,
+    elevation: 3, 
+    width:"65%",
+    alignItems:"flex-start"
   },
+dataLable:{
+
+},
+dataName:{},
+  
 });
